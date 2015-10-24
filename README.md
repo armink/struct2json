@@ -1,4 +1,4 @@
-# C结构体与 JSON 快速互转库 - struct2json
+# C结构体与 JSON 快速互转库
 
 ---
 
@@ -40,21 +40,21 @@ typedef struct {
 
 ### 将结构体对象序列化为 JSON 对象
 
-|使用前（[源文件](https://github.com/armink/struct2json/blob/master/docs/assets/not_use_struct2json.c)）|使用后（[源文件](https://github.com/armink/struct2json/blob/master/docs/assets/used_struct2json.c)）|
+|使用前（[源文件](https://github.com/armink/struct2json/blob/master/docs/zh/assets/not_use_struct2json.c)）|使用后（[源文件](https://github.com/armink/struct2json/blob/master/docs/zh/assets/used_struct2json.c)）|
 |:-----:|:-----:|
-|![结构体转JSON-使用前](https://raw.githubusercontent.com/armink/struct2json/master/docs/zh/images/not_use_struct2json.png)| ![结构体转JSON-使用后](https://raw.githubusercontent.com/armink/struct2json/master/docs/zh/images/used_struct2json.png)|
+|![结构体转JSON-使用前](https://git.oschina.net/Armink/struct2json/raw/master/docs/zh/images/not_use_struct2json.png)| ![结构体转JSON-使用后](https://git.oschina.net/Armink/struct2json/raw/master/docs/zh/images/used_struct2json.png)|
 
 ### 将 JSON 对象反序列化为结构体对象
 
-|使用前（[源文件](https://github.com/armink/struct2json/blob/master/docs/assets/not_use_struct2json_for_json.c)）|使用后（[源文件](https://github.com/armink/struct2json/blob/master/docs/assets/used_struct2json_for_json.c)）|
+|使用前（[源文件](https://github.com/armink/struct2json/blob/master/docs/zh/assets/not_use_struct2json_for_json.c)）|使用后（[源文件](https://github.com/armink/struct2json/blob/master/docs/zh/assets/used_struct2json_for_json.c)）|
 |:-----:|:-----:|
-|![JSON转结构体-使用前](https://raw.githubusercontent.com/armink/struct2json/master/docs/zh/images/not_use_struct2json_for_json.png)| ![JSON转结构体-使用后](https://raw.githubusercontent.com/armink/struct2json/master/docs/zh/images/used_struct2json_for_json.png)|
+|![JSON转结构体-使用前](https://git.oschina.net/Armink/struct2json/raw/master/docs/zh/images/not_use_struct2json_for_json.png)| ![JSON转结构体-使用后](https://git.oschina.net/Armink/struct2json/raw/master/docs/zh/images/used_struct2json_for_json.png)|
 
 欢迎大家 **fork and pull request**([Github](https://github.com/armink/struct2json)|[OSChina](http://git.oschina.net/armink/struct2json)|[Coding](https://coding.net/u/armink/p/struct2json/git)) 。如果觉得这个开源项目很赞，可以点击[项目主页](https://github.com/armink/struct2json) 右上角的**Star**，同时把它推荐给更多有需要的朋友。
 
 ## 文档
 
-具体内容参考[`\docs\zh\`](https://github.com/armink/struct2json/tree/master/docs/zh)下的文件。务必保证在 **阅读文档** 后再移植使用。
+具体内容参考[`\docs\zh\`](https://github.com/armink/struct2json/tree/master/docs/zh)下的文件。务必保证在 **阅读文档** 后再使用。
 
 ## 许可
 
