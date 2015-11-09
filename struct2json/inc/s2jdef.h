@@ -47,7 +47,7 @@ typedef struct {
 
 #define S2J_STRUCT_GET_string_ELEMENT(to_struct, from_json, _element) \
     json_temp = cJSON_GetObjectItem(from_json, #_element); \
-    if (json_temp) strcpy((to_struct)->_element, json_temp->valuestring)
+    if (json_temp) strcpy((to_struct)->_element, json_temp->valuestring);
 
 #define S2J_STRUCT_GET_double_ELEMENT(to_struct, from_json, _element) \
     json_temp = cJSON_GetObjectItem(from_json, #_element); \
