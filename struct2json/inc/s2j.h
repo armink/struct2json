@@ -44,6 +44,10 @@ extern "C" {
 #define s2j_create_json_obj(json_obj) \
     S2J_CREATE_JSON_OBJECT(json_obj)
 
+/* Delete JSON object */
+#define s2j_delete_json_obj(json_obj) \
+    S2J_DELETE_JSON_OBJECT(json_obj)
+
 /* Set basic type element for JSON object */
 #define s2j_json_set_basic_element(to_json, from_struct, type, element) \
     S2J_JSON_SET_BASIC_ELEMENT(to_json, from_struct, type, element)
@@ -59,6 +63,10 @@ extern "C" {
 /* Create structure object */
 #define s2j_create_struct_obj(struct_obj, type) \
     S2J_CREATE_STRUCT_OBJECT(struct_obj, type)
+
+/* Delete structure object */
+#define s2j_delete_struct_obj(struct_obj) \
+    S2J_DELETE_STRUCT_OBJECT(struct_obj)
 
 /* Get basic type element for structure object */
 #define s2j_struct_get_basic_element(to_struct, from_json, type, element) \

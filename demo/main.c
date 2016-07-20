@@ -115,5 +115,8 @@ int main(void) {
         printf("Converted OK!\n");
     }
 
+    s2j_delete_json_obj(json_student);
+    s2j_delete_struct_obj(converted_student_obj);
+
     return 0;
 }
