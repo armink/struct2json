@@ -37,7 +37,7 @@ for item in struct_str_split_list:
         #print(para_name)
         #基本类型的参数
         if para_type in ("uint8","uint16","uint32","uint64","int8","int16","int32","int64","char"):
-            if para_type in ("uint32","uint32","int64","uint64"):
+            if para_type in ("int64","uint64"):
                 if "[" in para_name:
                     left_symbol = para_name.find("[")  # 找到[位置
                     #right_symbol = para_name.find("]")  # 找到]位置

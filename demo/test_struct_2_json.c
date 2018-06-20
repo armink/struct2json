@@ -161,15 +161,15 @@ cJSON *struct_to_json_osSListEntryT(void* struct_obj)
 {
 	s2j_create_json_obj(json_obj_2);
 	osSListEntryT *struct_obj_2 = (osSListEntryT *)struct_obj;
-	s2j_json_set_basic_element(json_obj_2, struct_obj_2, double, next);
-	s2j_json_set_basic_element(json_obj_2, struct_obj_2, double, prev);
+	s2j_json_set_basic_element(json_obj_2, struct_obj_2, int, next);
+	s2j_json_set_basic_element(json_obj_2, struct_obj_2, int, prev);
 	return json_obj_2;
 }
 void *json_to_struct_osSListEntryT(cJSON* json_obj)
 {
 	s2j_create_struct_obj(struct_obj_2, osSListEntryT);
-	s2j_struct_get_basic_element(struct_obj_2,json_obj, double, next);
-	s2j_struct_get_basic_element(struct_obj_2,json_obj, double, prev);
+	s2j_struct_get_basic_element(struct_obj_2,json_obj, int, next);
+	s2j_struct_get_basic_element(struct_obj_2,json_obj, int, prev);
 	return struct_obj_2;
 }
 /*
@@ -197,8 +197,8 @@ cJSON *struct_to_json_OrderTT(void* struct_obj)
 	s2j_json_set_struct_element_by_func(json_obj_2, struct_obj_2,osSListEntryT,unrAuOaO);
 	s2j_json_set_struct_element_by_func(json_obj_2, struct_obj_2,osSListEntryT,elstcOrdrLst);
 	s2j_json_set_struct_array_element_by_func(json_obj_2, struct_obj_2, osSListEntryT,usrDefLst,MAX_LIST_MEM_TYPE);
-	s2j_json_set_basic_element(json_obj_2, struct_obj_2, double, priceLdr);
-	s2j_json_set_basic_element(json_obj_2, struct_obj_2, double, slotNo);
+	s2j_json_set_basic_element(json_obj_2, struct_obj_2, int, priceLdr);
+	s2j_json_set_basic_element(json_obj_2, struct_obj_2, int, slotNo);
 	s2j_json_set_basic_element(json_obj_2, struct_obj_2, string, filler);
 	s2j_json_set_basic_element(json_obj_2, struct_obj_2, int, free);
 	s2j_json_set_basic_element(json_obj_2, struct_obj_2, int, sltOpen);
@@ -212,8 +212,8 @@ void *json_to_struct_OrderTT(cJSON* json_obj)
 	s2j_struct_get_struct_element_by_func(struct_obj_2, json_obj, osSListEntryT,unrAuOaO);
 	s2j_struct_get_struct_element_by_func(struct_obj_2, json_obj, osSListEntryT,elstcOrdrLst);
 	s2j_struct_get_struct_array_element_by_func(struct_obj_2, json_obj, osSListEntryT,usrDefLst);
-	s2j_struct_get_basic_element(struct_obj_2,json_obj, double, priceLdr);
-	s2j_struct_get_basic_element(struct_obj_2,json_obj, double, slotNo);
+	s2j_struct_get_basic_element(struct_obj_2,json_obj, int, priceLdr);
+	s2j_struct_get_basic_element(struct_obj_2,json_obj, int, slotNo);
 	s2j_struct_get_basic_element(struct_obj_2,json_obj,string, filler);
 	s2j_struct_get_basic_element(struct_obj_2,json_obj, int, free);
 	s2j_struct_get_basic_element(struct_obj_2,json_obj, int, sltOpen);
@@ -255,8 +255,8 @@ int main(void)
 	if (NULL == fp) return 1;
 	fprintf(fp,"{\n \"comp_para\": {\n   \"para\": [\n      {\n        \"-type\": \"void**\",\n        \"value\": \"NULL\"\n      }"); 
 	
-	TEST_S2J_STRUCT(OrderT, 0, fp);
 	TEST_S2J_STRUCT(McBaseOrdrT, 0, fp);	
+	TEST_S2J_STRUCT(OrderT, 0, fp);
 	
 	fprintf(fp,"\n    ]\n  }\n}"); 
 	fclose(fp);
