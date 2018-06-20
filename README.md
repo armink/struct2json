@@ -53,9 +53,13 @@ typedef struct {
 欢迎大家 **fork and pull request**([Github](https://github.com/armink/struct2json)|[OSChina](http://git.oschina.net/armink/struct2json)|[Coding](https://coding.net/u/armink/p/struct2json/git)) 。如果觉得这个开源项目很赞，可以点击[项目主页](https://github.com/armink/struct2json) 右上角的**Star**，同时把它推荐给更多有需要的朋友。
 
 V2.0.0 扩展说明【yuxuebao】
+
 新增子结构体和子结构体数组转换接口。
-demo中新增转换代码自动生成脚本
+
+demo中新增转换代码自动生成脚本。
+
 demo中新增结构体转换示例和json格式文件输出。
+
 
 
 ## 文档
