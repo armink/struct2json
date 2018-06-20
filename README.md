@@ -68,4 +68,6 @@ typedef struct {
 
 ## 许可
 
-MIT Copyright (c) armink.ztl@gmail.com
+MIT Copyright (c) 
+armink.ztl@gmail.com
+yuxuebao@msn.com ----V2.0
