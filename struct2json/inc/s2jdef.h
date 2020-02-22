@@ -44,14 +44,50 @@ typedef struct {
 #define S2J_STRUCT_GET_int_ELEMENT(to_struct, from_json, _element) \
     json_temp = cJSON_GetObjectItem(from_json, #_element); \
     if (json_temp) (to_struct)->_element = json_temp->valueint;
+    
+#define S2J_STRUCT_GET_int_ELEMENT_EX(to_struct, from_json, _element, _defval) \
+    { \
+        if (from_json) { \
+			json_temp = cJSON_GetObjectItem(from_json, #_element); \
+			if (json_temp) (to_struct)->_element = json_temp->valueint; \
+			else (to_struct)->_element = _defval; \
+        } else { \
+            (to_struct)->_element = _defval; \
+        } \
+    }
+
 
 #define S2J_STRUCT_GET_string_ELEMENT(to_struct, from_json, _element) \
     json_temp = cJSON_GetObjectItem(from_json, #_element); \
     if (json_temp) strcpy((to_struct)->_element, json_temp->valuestring);
+    
+#define S2J_STRUCT_GET_string_ELEMENT_EX(to_struct, from_json, _element, _defval) \
+    { \
+        if (from_json) { \
+            json_temp = cJSON_GetObjectItem(from_json, #_element); \
+            if (json_temp) strcpy((to_struct)->_element, json_temp->valuestring); \
+            else strcpy((to_struct)->_element, _defval); \
+        } else { \
+            strcpy((to_struct)->_element, _defval); \
+        } \
+    }
+
 
 #define S2J_STRUCT_GET_double_ELEMENT(to_struct, from_json, _element) \
     json_temp = cJSON_GetObjectItem(from_json, #_element); \
     if (json_temp) (to_struct)->_element = json_temp->valuedouble;
+
+#define S2J_STRUCT_GET_double_ELEMENT_EX(to_struct, from_json, _element, _defval) \
+    { \
+        if (from_json) { \
+			json_temp = cJSON_GetObjectItem(from_json, #_element); \
+			if (json_temp) (to_struct)->_element = json_temp->valuedouble; \
+			else (to_struct)->_element = _defval; \
+        } else { \
+            (to_struct)->_element = _defval; \
+        } \
+    }
+
 
 #define S2J_STRUCT_ARRAY_GET_int_ELEMENT(to_struct, from_json, _element, index) \
     (to_struct)->_element[index] = from_json->valueint;
@@ -124,6 +160,9 @@ typedef struct {
 
 #define S2J_STRUCT_GET_BASIC_ELEMENT(to_struct, from_json, type, _element) \
     S2J_STRUCT_GET_##type##_ELEMENT(to_struct, from_json, _element)
+
+#define S2J_STRUCT_GET_BASIC_ELEMENT_EX(to_struct, from_json, type, _element, _defval) \
+    S2J_STRUCT_GET_##type##_ELEMENT_EX(to_struct, from_json, _element, _defval)
 
 #define S2J_STRUCT_GET_ARRAY_ELEMENT(to_struct, from_json, type, _element) \
     { \

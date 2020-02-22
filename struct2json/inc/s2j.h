@@ -38,7 +38,7 @@ extern "C" {
 #endif
 
 /* struct2json software version number */
-#define S2J_SW_VERSION                "1.0.3"
+#define S2J_SW_VERSION                "1.0.4"
 
 /* Create JSON object */
 #define s2j_create_json_obj(json_obj) \
@@ -71,6 +71,8 @@ extern "C" {
 /* Get basic type element for structure object */
 #define s2j_struct_get_basic_element(to_struct, from_json, type, element) \
     S2J_STRUCT_GET_BASIC_ELEMENT(to_struct, from_json, type, element)
+#define s2j_struct_get_basic_element_ex(to_struct, from_json, type, element, _defval) \
+    S2J_STRUCT_GET_BASIC_ELEMENT_EX(to_struct, from_json, type, element, _defval)
 
 /* Get array type element for structure object */
 #define s2j_struct_get_array_element(to_struct, from_json, type, element) \
