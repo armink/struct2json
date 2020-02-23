@@ -55,9 +55,15 @@ static void *json_to_struct(cJSON* json_obj) {
 
     /* deserialize data to Student structure object. */
     s2j_struct_get_basic_element(struct_student, json_obj, int, id);
+#if 1
     s2j_struct_get_array_element(struct_student, json_obj, int, score);
     s2j_struct_get_basic_element(struct_student, json_obj, string, name);
     s2j_struct_get_basic_element(struct_student, json_obj, double, weight);
+#else // another xxx_ex api, add default value and more secure
+    s2j_struct_get_array_element_ex(struct_student, json_obj, int, score, 8, 0);
+    s2j_struct_get_basic_element_ex(struct_student, json_obj, string, name, "John");
+    s2j_struct_get_basic_element_ex(struct_student, json_obj, double, weight, 0);
+#endif
 
     /* deserialize data to Student.Hometown structure object. */
     s2j_struct_get_struct_element(struct_hometown, struct_student, json_hometown, json_obj, Hometown, hometown);
