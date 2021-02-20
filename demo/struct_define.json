@@ -1,0 +1,88 @@
+{
+	"struct": [
+		{
+			"type": "void*",
+			"value": "null"
+		},
+		{
+			"type": "UsrDefOrdrT",
+			"value": {
+	"usrName":	"",
+	"usrSqno":	0
+}
+		},
+		{
+			"type": "McBaseOrdrT",
+			"value": {
+	"ordrNo":	0,
+	"intrlOrdrNo":	0,
+	"exePrc":	0,
+	"elstcPrc":	0,
+	"ordrQty":	0,
+	"effectTime":	0,
+	"ordSide":	0,
+	"ordrType":	0,
+	"usrSqno":	0,
+	"prdctSqno":	0,
+	"orgSqno":	0,
+	"extOrdType":	0,
+	"ordrRestr":	0
+}
+		},
+		{
+			"type": "McBaseOrdrArrayT",
+			"value": {
+	"mcBaseOrdrArray":	[{
+			"ordrNo":	0,
+			"intrlOrdrNo":	0,
+			"exePrc":	0,
+			"elstcPrc":	0,
+			"ordrQty":	0,
+			"effectTime":	0,
+			"ordSide":	0,
+			"ordrType":	0,
+			"usrSqno":	0,
+			"prdctSqno":	0,
+			"orgSqno":	0,
+			"extOrdType":	0,
+			"ordrRestr":	0
+		}, {
+			"ordrNo":	0,
+			"intrlOrdrNo":	0,
+			"exePrc":	0,
+			"elstcPrc":	0,
+			"ordrQty":	0,
+			"effectTime":	0,
+			"ordSide":	0,
+			"ordrType":	0,
+			"usrSqno":	0,
+			"prdctSqno":	0,
+			"orgSqno":	0,
+			"extOrdType":	0,
+			"ordrRestr":	0
+		}]
+}
+		},
+		{
+			"type": "McOcoBaseOrdrT",
+			"value": {
+	"mcBaseOrdr":	{
+		"ordrNo":	0,
+		"intrlOrdrNo":	0,
+		"exePrc":	0,
+		"elstcPrc":	0,
+		"ordrQty":	0,
+		"effectTime":	0,
+		"ordSide":	0,
+		"ordrType":	0,
+		"usrSqno":	0,
+		"prdctSqno":	0,
+		"orgSqno":	0,
+		"extOrdType":	0,
+		"ordrRestr":	0
+	},
+	"pUsrDef":	0
+}
+		}
+	]
+}
