@@ -33,7 +33,7 @@ MIT License
 
 ## Usage
 
-### Welcome to struct2json
+### struct2json起源
 
 struct2json 是一个开源的C结构体与 JSON 快速互转库，它可以快速实现 结构体对象 与 JSON 对象 之间序列化及反序列化要求。快速、简洁的 API 设计，大大降低直接使用 JSON 解析库来实现此类功能的代码复杂度。
 
@@ -45,18 +45,18 @@ struct2json 是一个开源的C结构体与 JSON 快速互转库，它可以快�
     通信 ：高级语言对JSON支持的很友好，例如： Javascript、Groovy 就对 JSON 具有原生的支持，所以 JSON 也可作为C语言与其他语言软件之间的通信协议格式及对象传递格式；
     可视化 ：序列化为 JSON 后的对象，可以更加直观的展示到控制台或者 UI 上，可用于产品调试、产品二次开发等场景；
 
-V2.0版本新增功能【yuxuebao】
-	1) 更新cJSON库至1.7.12版本，并扩充实现，支持int64 (long long)类型数据。PS：cJSON原来int64类型以double方式处理，如果超过16位会有精度损失。
-	2) 扩展struct2json功能，增加支持结构体内包含结构体成员，支持包含数组成员。
-	3) 增加struct2json 结构体与JSON转换代码自动生成的Python脚本，支持从头文件中提取结构体定义，并根据结构体定义自动生成结构体与JSON互转代码，并提供相关示例。
+###V2.0版本新增功能【yuxuebao】
+	###1) 更新cJSON库至1.7.12版本，并扩充实现，支持int64 (long long)类型数据。PS：cJSON原来int64类型以double方式处理，如果超过16位会有精度损失。
+	###2) 扩展struct2json功能，增加支持结构体内包含结构体成员，支持包含数组成员。
+	###3) 增加struct2json 结构体与JSON转换代码自动生成的Python脚本，支持从头文件中提取结构体定义，并根据结构体定义自动生成结构体与JSON互转代码，并提供相关示例。
 
 ##如何使用
-	1) 提取结构体定义
+	###1) 提取结构体定义:
 		将头文件（eg:mc_usr_def.h）放在generate_s2j_code\inc目录下；
 		执行generate_struct_defination.py，生成struct_defination.txt；
-	2) 生成结构体与JSON互转代码
+	###2) 生成结构体与JSON互转代码:
 		执行generate_s2j_code.py，根据结构体定义自动生成结构体与JSON互转代码；
-	3) 测试结构体与JSON转换
+	###3) 测试结构体与JSON转换:
 		将生成代码my_struct_2_json.c,my_struct_2_json.h拷贝至demo目录；
 		编译测试代码，gcc  ../cJSON/cJSON.c ../struct2json/src/*.c my_struct_2_json.c  -I../cJSON -lm -DDEBUGS2J -g -o tests2j
 		测试 ./tests2j 
