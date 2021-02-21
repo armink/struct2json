@@ -35,7 +35,7 @@ extern "C" {
 #endif
 
 /* struct2json software version number */
-/*#define S2J_SW_VERSION                "2.0.0"*/
+/*#define S2J_SW_VERSION                "2.0.4"*/
 
 /* Set child structure type element for JSON object by function [cJSON * struct_to_json_##type(void*)] */
 #define s2j_json_set_struct_element_by_func(to_json, from_struct, type, element) \
