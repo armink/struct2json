@@ -13,7 +13,7 @@ for line in lines:
 struct_str = re.sub(r'((?<=\n)|^)[\t]*\/\*.*?\*\/\n?|\/\*.*?\*\/|((?<=\n)|^)[\t]*\/\/[^\n]*\n|\/\/[^\n]*', '',struct_str)
 
 head_str = r"""
-#include "mc_usr_def.h"
+#include "inc/mc_usr_def.h"
 #include "my_struct_2_json.inc"
 #include "my_struct_2_json.h"
 
@@ -59,10 +59,18 @@ for item in struct_str_split_list:
         s2j_code_str_concat = "" #定义 struct to json 的初始连接字符串
         j2s_code_str_concat = "" #定义 json to struct 的初始连接字符串
         para_item = para.split(" ")
-        para_type = para_item[0] # 参数类型
-        #print(para_type)
-        para_name = para_item[1] # 参数名称
-        #print(para_name)
+        if len(para_item)==2:
+            para_type = para_item[0] # 参数类型
+            #print(para_type)
+            para_name = para_item[1] # 参数名称
+            #print(para_name)
+        elif len(para_item) > 2:
+            para_type = para_item[0] # 参数类型
+            for index in range(1, len(para_item)-2):
+                para_type = para_type + " " + para_item[index]
+            #print(para_type)
+            para_name = para_item[-1] # 参数名称
+            #print(para_name)
         #基本类型的参数
         if para.find("*")!=-1:
             last_station = para.rfind("*")
@@ -71,13 +79,13 @@ for item in struct_str_split_list:
             s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_basic_element(json_obj_, struct_obj_, int, " + para_name + ");\n\t"
             j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj, int, " + para_name + ");\n\t"
         else:
-            if para_type in ("char","uint8_t","BOOL","int","uint16_t","uint32_t","uint32","uint16","size_t","int64_t","uint64_t","int16","int32","int32_t","int64","uint64","unsigned","unsigned int","uint_fast64_t","__int128_t","__uint128_t","float","double","long double"):
+            if para_type in ("char","unsigned char","uint8_t","BOOL","int","uint16_t","uint32_t","uint32","uint16","size_t","int64_t","uint64_t","int16","int32","int32_t","int64","uint64","unsigned","unsigned int","uint_fast64_t","__int128_t","__uint128_t","float","double","long double"):
                 if para_type in ("float","double","long double","__int128_t","__uint128_t"):
                     if "[" in para_name:
-					    #print(para_name)
+                        #print(para_name)
                         left_symbol = para_name.find("[")  # 找到[位置
-                        #right_symbol = para_name.find("]")  # 找到]位置
-                        array_para_name_size = para_name[left_symbol+1]
+                        right_symbol = para_name.find("]")  # 找到]位置
+                        array_para_name_size = para_name[left_symbol+1:right_symbol]
                         para_name = para_name.split("[")[0]
                         s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_array_element(json_obj_, struct_obj_, double, "+ para_name + ","+ array_para_name_size+");\n\t"
                         j2s_code_str_concat = j2s_code_str_concat +"s2j_struct_get_array_element(struct_obj_,json_obj, double, "+para_name + ");\n\t"
@@ -86,9 +94,18 @@ for item in struct_str_split_list:
                         j2s_code_str_concat = j2s_code_str_concat +"s2j_struct_get_basic_element(struct_obj_,json_obj, double, "+para_name+");\n\t"
                 elif para_type =="char" :
                     if "[" in para_name: # 处理字符数组的情况，只取名字，舍弃中括号部分
-                        para_name = para_name.split("[")[0]
-                        s2j_code_str_concat = s2j_code_str_concat+ "s2j_json_set_basic_element(json_obj_, struct_obj_, string, " + para_name + ");\n\t"
-                        j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj,string, " + para_name + ");\n\t"
+                        para_name_item = para_name.split("[")
+                        if len(para_name_item)==2:
+                            para_name = para_name_item[0]
+                            s2j_code_str_concat = s2j_code_str_concat+ "s2j_json_set_basic_element(json_obj_, struct_obj_, string, " + para_name + ");\n\t"
+                            j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj,string, " + para_name + ");\n\t"
+                        elif len(para_name_item)==3: # 处理二维字符数组的情况
+                            para_name = para_name_item[0]
+                            # left_symbol = 0  # 找到[位置
+                            right_symbol = para_name_item[1].find("]")  # 找到]位置
+                            array_para_name_size = para_name_item[1][0:right_symbol]
+                            s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_array_element(json_obj_, struct_obj_, string, "+ para_name + ","+ array_para_name_size+");\n\t"
+                            j2s_code_str_concat = j2s_code_str_concat +"s2j_struct_get_array_element(struct_obj_,json_obj, string, "+para_name + ");\n\t"
                     else:
                         s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_basic_element(json_obj_, struct_obj_, int, " + para_name + ");\n\t"
                         j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj, int, " + para_name + ");\n\t"
@@ -109,7 +126,7 @@ for item in struct_str_split_list:
             elif para_type.find("CbT")!=-1:
                 s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_basic_element(json_obj_, struct_obj_, int, " + para_name + ");\n\t"
                 j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj, int, " + para_name + ");\n\t"
-			
+            
             else: #结构体类型的参数
                 if "[" in para_name:
                     # usrDefLst[MAX_LIST_MEM_TYPE]
@@ -160,14 +177,14 @@ h_header = r"""
 extern "C" {
 #endif
 """
-h_tail = r"""	
+h_tail = r"""    
 #ifdef __cplusplus
 }
 #endif /* end of __cplusplus */
 """
 content = h_header
 for i in range(len(fun_list)):
-	content = content + "\n" + fun_list[i] +";\n"
+    content = content + "\n" + fun_list[i] +";\n"
 
 content = content + h_tail
 file.write(content.strip())
@@ -180,17 +197,17 @@ for i in range(len(struct_name_return.split())):
     #print(str_return)
 void_main_header = r"""
     char file_name[] = "struct_define.json";
-	FILE *fp;
+    FILE *fp;
 
-	fp = fopen(file_name, "w");
-	if (NULL == fp) return 1;
-	fprintf(fp,"{\n\t\"struct\": [\n\t\t{\n\t\t\t\"type\": \"void*\",\n\t\t\t\"value\": \"null\"\n\t\t}"); 
+    fp = fopen(file_name, "w");
+    if (NULL == fp) return 1;
+    fprintf(fp,"{\n\t\"struct\": [\n\t\t{\n\t\t\t\"type\": \"void*\",\n\t\t\t\"value\": \"null\"\n\t\t}"); 
 
 """
-void_main_tail = r"""	
-	fprintf(fp,"\n\t]\n}");
-	fclose(fp);
-	return 0;
+void_main_tail = r"""    
+    fprintf(fp,"\n\t]\n}");
+    fclose(fp);
+    return 0;
 }
 
 

@@ -5,83 +5,77 @@
 			"value": "null"
 		},
 		{
-			"type": "UsrDefOrdrT",
-			"value": {
-	"usrName":	"",
-	"usrSqno":	0
-}
-		},
-		{
 			"type": "McBaseOrdrT",
 			"value": {
-	"ordrNo":	0,
-	"intrlOrdrNo":	0,
-	"exePrc":	0,
-	"elstcPrc":	0,
-	"ordrQty":	0,
-	"effectTime":	0,
-	"ordSide":	0,
-	"ordrType":	0,
-	"usrSqno":	0,
-	"prdctSqno":	0,
-	"orgSqno":	0,
-	"extOrdType":	0,
-	"ordrRestr":	0
+	"id":	66,
+	"usrType":	66,
+	"usrName":	"BBBBBBB",
+	"usrNameArray":	["BBBBBBB", "BBBBBBB"],
+	"usrSqno":	1111638594,
+	"ussSqnoArray":	[1111638594, 1111638594],
+	"jobSqno":	4774451407313060418,
+	"jobSqnoArray":	[4774451407313060418, 4774451407313060418],
+	"price":	156842099844.51764,
+	"priceArray":	[156842099844.51764, 156842099844.51764]
 }
 		},
 		{
 			"type": "McBaseOrdrArrayT",
 			"value": {
 	"mcBaseOrdrArray":	[{
-			"ordrNo":	0,
-			"intrlOrdrNo":	0,
-			"exePrc":	0,
-			"elstcPrc":	0,
-			"ordrQty":	0,
-			"effectTime":	0,
-			"ordSide":	0,
-			"ordrType":	0,
-			"usrSqno":	0,
-			"prdctSqno":	0,
-			"orgSqno":	0,
-			"extOrdType":	0,
-			"ordrRestr":	0
+			"id":	66,
+			"usrType":	66,
+			"usrName":	"BBBBBBB",
+			"usrNameArray":	["BBBBBBB", "BBBBBBB"],
+			"usrSqno":	1111638594,
+			"ussSqnoArray":	[1111638594, 1111638594],
+			"jobSqno":	4774451407313060418,
+			"jobSqnoArray":	[4774451407313060418, 4774451407313060418],
+			"price":	156842099844.51764,
+			"priceArray":	[156842099844.51764, 156842099844.51764]
 		}, {
-			"ordrNo":	0,
-			"intrlOrdrNo":	0,
-			"exePrc":	0,
-			"elstcPrc":	0,
-			"ordrQty":	0,
-			"effectTime":	0,
-			"ordSide":	0,
-			"ordrType":	0,
-			"usrSqno":	0,
-			"prdctSqno":	0,
-			"orgSqno":	0,
-			"extOrdType":	0,
-			"ordrRestr":	0
+			"id":	66,
+			"usrType":	66,
+			"usrName":	"BBBBBBB",
+			"usrNameArray":	["BBBBBBB", "BBBBBBB"],
+			"usrSqno":	1111638594,
+			"ussSqnoArray":	[1111638594, 1111638594],
+			"jobSqno":	4774451407313060418,
+			"jobSqnoArray":	[4774451407313060418, 4774451407313060418],
+			"price":	156842099844.51764,
+			"priceArray":	[156842099844.51764, 156842099844.51764]
 		}]
 }
 		},
 		{
 			"type": "McOcoBaseOrdrT",
 			"value": {
-	"mcBaseOrdr":	{
-		"ordrNo":	0,
-		"intrlOrdrNo":	0,
-		"exePrc":	0,
-		"elstcPrc":	0,
-		"ordrQty":	0,
-		"effectTime":	0,
-		"ordSide":	0,
-		"ordrType":	0,
-		"usrSqno":	0,
-		"prdctSqno":	0,
-		"orgSqno":	0,
-		"extOrdType":	0,
-		"ordrRestr":	0
+	"mcBaseOrdrAry":	{
+		"mcBaseOrdrArray":	[{
+				"id":	66,
+				"usrType":	66,
+				"usrName":	"BBBBBBB",
+				"usrNameArray":	["BBBBBBB", "BBBBBBB"],
+				"usrSqno":	1111638594,
+				"ussSqnoArray":	[1111638594, 1111638594],
+				"jobSqno":	4774451407313060418,
+				"jobSqnoArray":	[4774451407313060418, 4774451407313060418],
+				"price":	156842099844.51764,
+				"priceArray":	[156842099844.51764, 156842099844.51764]
+			}, {
+				"id":	66,
+				"usrType":	66,
+				"usrName":	"BBBBBBB",
+				"usrNameArray":	["BBBBBBB", "BBBBBBB"],
+				"usrSqno":	1111638594,
+				"ussSqnoArray":	[1111638594, 1111638594],
+				"jobSqno":	4774451407313060418,
+				"jobSqnoArray":	[4774451407313060418, 4774451407313060418],
+				"price":	156842099844.51764,
+				"priceArray":	[156842099844.51764, 156842099844.51764]
+			}]
 	},
-	"pUsrDef":	0
+	"pUsrDef":	4774451407313060418
 }
 		}
 	]

@@ -44,11 +44,12 @@ extern "C" {
 
 /* Set child structure array type element for JSON object by function [cJSON * struct_to_json_##type(void*)] */
 #define s2j_json_set_struct_array_element_by_func(to_json, from_struct, type, element, array_size) \
-	cJSON * array_##element = cJSON_CreateArray();	\
-	cJSON_AddItemToObject(to_json, #element, array_##element); \
-	int i = 0; \
-	for (; i < array_size; i++) \
-		cJSON_AddItemToArray(array_##element, struct_to_json_##type(&((from_struct)->element[i])));  \
+	cJSON * j_array_##element = cJSON_CreateArray();	\
+	cJSON_AddItemToObject(to_json, #element, j_array_##element); \
+	int j_index_##element = 0; \
+	for (; j_index_##element < array_size; j_index_##element++) { \
+		cJSON_AddItemToArray(j_array_##element, struct_to_json_##type(&((from_struct)->element[j_index_##element])));  \
+	}  \
 
 
 /* Get child structure type element for structure object by function [void *json_to_struct_#type(cJSON*)]*/
@@ -68,14 +69,14 @@ extern "C" {
 #define s2j_struct_get_struct_array_element_by_func(to_struct, from_json, type, element) \
 	{ \
 		cJSON *array_##element, *array_item_##element; \
-		size_t index = 0, size = 0; \
+		size_t index_##element = 0, size_##element = 0; \
 		array_##element = cJSON_GetObjectItem(from_json, #element); \
 		if (array_##element) { \
-			size = cJSON_GetArraySize(array_##element); \
-			for (;index < size; index++) { \
-				array_item_##element = cJSON_GetArrayItem(array_##element, index); \
+			size_##element = cJSON_GetArraySize(array_##element); \
+			for (;index_##element < size_##element; index_##element++) { \
+				array_item_##element = cJSON_GetArrayItem(array_##element, index_##element); \
 				if (array_item_##element) { \
-					type *struct_##element = &((to_struct)->element[index]); \
+					type *struct_##element = &((to_struct)->element[index_##element]); \
 					type * p##element = (type *)json_to_struct_##type(array_item_##element); \
 					*(struct_##element) = *(p##element); \
 					s2j_delete_struct_obj(p##element); \

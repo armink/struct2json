@@ -1,37 +1,25 @@
 
-typedef struct UsrDefOrdrS
-{
-    char    usrName[8];
-    int64   usrSqno;
-}UsrDefOrdrT, *pUsrDefOrdrT;
-
 typedef struct McBaseOrdrS
 {
-	int64 ordrNo;
-	int64 intrlOrdrNo;
-	int64 exePrc;
-	int64 elstcPrc;
-	int64 ordrQty;
-	int64 effectTime;
-	int32 ordSide;
-	int32 ordrType;
-	int32 usrSqno;
-	int32 prdctSqno;
-	int32 orgSqno;
-	int32 extOrdType;
-	int32 ordrRestr;
-
+    unsigned char    id;
+    char    usrType;
+    char    usrName[8];
+    char    usrNameArray[2][8];
+    int32   usrSqno;
+    int32     ussSqnoArray[2];
+    int64   jobSqno;
+    int64   jobSqnoArray[2];
+    double     price;
+    double     priceArray[2];
 } McBaseOrdrT, *pMcBaseOrdrT;
 
 typedef struct McBaseOrdrArray
 {
-	McBaseOrdrT mcBaseOrdrArray[2] ;
-
+    McBaseOrdrT mcBaseOrdrArray[2];
 } McBaseOrdrArrayT;
 
 typedef struct McOcoBaseOrdrS
 {
-	McBaseOrdrT mcBaseOrdr;
-	void * pUsrDef;
-
+    McBaseOrdrArrayT mcBaseOrdrAry;
+    void * pUsrDef;
 } McOcoBaseOrdrT, *pMcOcoBaseOrdrT;
