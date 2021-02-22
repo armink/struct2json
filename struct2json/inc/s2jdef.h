@@ -90,7 +90,7 @@ typedef struct {
     (to_struct)->_element[index] = from_json->valueint;
 
 #define S2J_STRUCT_ARRAY_GET_string_ELEMENT(to_struct, from_json, _element, index) \
-    strncpy((to_struct)->_element[index], from_json->valuestring,sizeof((to_struct)->_element)-1);
+    strncpy((to_struct)->_element[index], from_json->valuestring,sizeof((to_struct)->_element[index])-1);
 
 #define S2J_STRUCT_ARRAY_GET_double_ELEMENT(to_struct, from_json, _element, index) \
     (to_struct)->_element[index] = from_json->valuedouble;
@@ -103,7 +103,7 @@ typedef struct {
     else (to_struct)->_element[index] = _defval; 
     
 #define S2J_STRUCT_ARRAY_GET_string_ELEMENT_EX(to_struct, from_json, _element, index, _defval) \
-    if (from_json) strncpy((to_struct)->_element[index], from_json->valuestring,sizeof((to_struct)->_element)-1); \
+    if (from_json) strncpy((to_struct)->_element[index], from_json->valuestring,sizeof((to_struct)->_element[index])-1); \
     else strncpy((to_struct)->_element[index], _defval,sizeof((to_struct)->_element)-1); 
 
 #define S2J_STRUCT_ARRAY_GET_double_ELEMENT_EX(to_struct, from_json, _element, index) \
@@ -120,6 +120,7 @@ typedef struct {
     cJSON_AddNumberToObject(to_json, #_element, (double)(from_struct)->_element);
 
 #define S2J_JSON_SET_string_ELEMENT(to_json, from_struct, _element) \
+    (from_struct)->_element[sizeof((from_struct)->_element)-1] = '\0'; \
     cJSON_AddStringToObject(to_json, #_element, (from_struct)->_element);
 
 #define S2J_JSON_ARRAY_SET_int_ELEMENT(to_json, from_struct, _element, index) \
@@ -129,6 +130,7 @@ typedef struct {
     cJSON_AddItemToArray(to_json, cJSON_CreateNumber((from_struct)->_element[index]));
 
 #define S2J_JSON_ARRAY_SET_string_ELEMENT(to_json, from_struct, _element, index) \
+    (from_struct)->_element[index][sizeof((from_struct)->_element[index])-1] = '\0'; \
     cJSON_AddItemToArray(to_json, cJSON_CreateString((from_struct)->_element[index]));
 
 #define S2J_JSON_ARRAY_SET_ELEMENT(to_json, from_struct, type, _element, index) \
