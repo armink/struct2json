@@ -1,14 +1,4 @@
-# #file = open('mc/mc_app_shl.h','r',encoding='UTF-8')
-# with open("mc/mc_app_shl.h",'r',encoding='UTF-8') as f:
-#     content = f.read()
-#     keyword_start = 'typedef struct'
-#     keyword_middle = '}'
-#     keyword_end = ';'
-#     position_start = content_file.find(keyword_start,position_start)
-#     position_middle = content_file.find(keyword_middle, position_start)
-#     position_end = content_file.find(keyword_end, position_middle)
-# with open("struct_defination.txt", "w") as f:
-#     f.write(content)
+#!/usr/bin/python3
 import os
 import re
 
