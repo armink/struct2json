@@ -23,7 +23,7 @@ MIT License
 >  The above copyright notice and this permission notice shall be included in
 >  all copies or substantial portions of the Software.
 >
->  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+>  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
 >  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 >  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 >  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
@@ -53,12 +53,12 @@ V2.0版本新增功能【yuxuebao】
 ##如何使用
 	1) 提取结构体定义
 		将头文件（eg:mc_usr_def.h）放在generate_s2j_code\inc目录下；
-		执行generate_struct_defination.py，生成struct_defination.txt；
+		windows环境下，执行generate_struct_defination.py，生成struct_defination.txt；
 	2) 生成结构体与JSON互转代码
-		执行generate_s2j_code.py，根据结构体定义自动生成结构体与JSON互转代码；
+		windows环境下，执行generate_s2j_code.py，根据结构体定义自动生成结构体与JSON互转代码；
 	3) 测试结构体与JSON转换
 		将生成代码my_struct_2_json.c,my_struct_2_json.h拷贝至demo目录；
-		编译测试代码，gcc  ../cJSON/cJSON.c ../struct2json/src/*.c my_struct_2_json.c  -I../cJSON -lm -DDEBUGS2J -g -o tests2j
+		linux环境下，编译测试代码，gcc  ../cJSON/cJSON.c ../struct2json/src/*.c my_struct_2_json.c  -I../cJSON -lm -DDEBUGS2J -g -o tests2j
 		测试 ./tests2j 
 		查看output输出和生成的JSON样例文件struct_define.json；
 		
