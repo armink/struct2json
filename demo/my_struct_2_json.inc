@@ -46,51 +46,51 @@ do\
 {\
     if (NULL == (p)) \
     {\
-        fprintf (stdout, "\nWARNING: Null pointer accured(%s). [FUNCTION:%s, FILE:%s, LINE:%d]\n", #p,__FUNCTION__, __FILE__, __LINE__); 	\
-		return -1;    \
+        fprintf (stdout, "\nWARNING: Null pointer accured(%s). [FUNCTION:%s, FILE:%s, LINE:%d]\n", #p,__FUNCTION__, __FILE__, __LINE__);     \
+        return -1;    \
     }\
 } while (0);
 #endif
 
 
-#define struct_para_json2bin(para_type,bin_para, type, value)	\
-	else if (0 == strcmp( #para_type, type)){	\
-		para_type* p_##para_type = (para_type*)json_to_struct_##para_type(value);		\
-		*bin_para = p_##para_type;	\
-	}	\
+#define struct_para_json2bin(para_type,bin_para, type, value)    \
+    else if (0 == strcmp( #para_type, type)){    \
+        para_type* p_##para_type = (para_type*)json_to_struct_##para_type(value);        \
+        *bin_para = p_##para_type;    \
+    }    \
 
 
-#define struct_para_bin2json(para_type,bin_para, type,json_para)	\
-	else if (0 == strcmp( #para_type, type)) 	{	\
-        cJSON* value_new = struct_to_json_##para_type(bin_para);	\
-        cJSON_ReplaceItemInObject(*json_para,"value",value_new);	\
-	}	\
+#define struct_para_bin2json(para_type,bin_para, type,json_para)    \
+    else if (0 == strcmp( #para_type, type))     {    \
+        cJSON* value_new = struct_to_json_##para_type(bin_para);    \
+        cJSON_ReplaceItemInObject(*json_para,"value",value_new);    \
+    }    \
 
 
 #ifdef DEBUGS2J
 
 #define TEST_S2J_STRUCT(type, value, file) \
-			type struct_obj##type; \
-			memset(&struct_obj##type, value, sizeof(type));  \
-			cJSON *json_obj##type = struct_to_json_##type(&struct_obj##type); \
-			char* str_json##type = cJSON_Print(json_obj##type); \
-			printf("%s: %s\n",#type, str_json##type); \
-			fprintf(file,",\n\t\t{\n\t\t\t\"type\": \"%s\",\n\t\t\t\"value\": %s\n\t\t}", #type, str_json##type); \
-			type *p_struct_obj##type =(type *)json_to_struct_##type(json_obj##type); \
-			int cmp##type = memcmp(p_struct_obj##type, &struct_obj##type, sizeof(type)); \
-			printf("%s:memcmp:%d\n",#type, cmp##type); \
-			cJSON *json_obj2##type = struct_to_json_##type(p_struct_obj##type); \
-			char* str_json2##type = cJSON_Print(json_obj2##type); \
-			printf("%s: %s\n",#type, str_json2##type); \
-			int str_cmp##type = strcmp(str_json##type, str_json2##type); \
-			printf("%s:strcmp:%d\n",#type, str_cmp##type); \
-			cJSON_bool json_cmp##type = cJSON_Compare(json_obj##type, json_obj2##type, 1); \
-			printf("%s:json_cmp:%d\n",#type, json_cmp##type); \
-			free(str_json##type);	\
-			free(str_json2##type); \
-			s2j_delete_struct_obj(p_struct_obj##type); \
-			s2j_delete_json_obj(json_obj##type); \
-			s2j_delete_json_obj(json_obj2##type); \
+            type struct_obj##type; \
+            memset(&struct_obj##type, value, sizeof(type));  \
+            cJSON *json_obj##type = struct_to_json_##type(&struct_obj##type); \
+            char* str_json##type = cJSON_Print(json_obj##type); \
+            printf("%s: %s\n",#type, str_json##type); \
+            fprintf(file,",\n\t\t{\n\t\t\t\"type\": \"%s\",\n\t\t\t\"value\": %s\n\t\t}", #type, str_json##type); \
+            type *p_struct_obj##type =(type *)json_to_struct_##type(json_obj##type); \
+            int cmp##type = memcmp(p_struct_obj##type, &struct_obj##type, sizeof(type)); \
+            printf("%s:memcmp:%d\n",#type, cmp##type); \
+            cJSON *json_obj2##type = struct_to_json_##type(p_struct_obj##type); \
+            char* str_json2##type = cJSON_Print(json_obj2##type); \
+            printf("%s: %s\n",#type, str_json2##type); \
+            int str_cmp##type = strcmp(str_json##type, str_json2##type); \
+            printf("%s:strcmp:%d\n",#type, str_cmp##type); \
+            cJSON_bool json_cmp##type = cJSON_Compare(json_obj##type, json_obj2##type, 1); \
+            printf("%s:json_cmp:%d\n",#type, json_cmp##type); \
+            free(str_json##type);    \
+            free(str_json2##type); \
+            s2j_delete_struct_obj(p_struct_obj##type); \
+            s2j_delete_json_obj(json_obj##type); \
+            s2j_delete_json_obj(json_obj2##type); \
 
 
 #endif// DEBUGS2J

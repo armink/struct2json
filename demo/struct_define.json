@@ -5,45 +5,52 @@
 			"value": "null"
 		},
 		{
+			"type": "McUsrInfoT",
+			"value": {
+	"pInt":	0,
+	"pIntArray":	[0, 0],
+	"fun":	0,
+	"funArray":	[0, 0],
+	"day1":	0,
+	"day2":	0,
+	"day2Array":	[0, 0],
+	"id":	0,
+	"idArray":	[0, 0],
+	"usrType":	0,
+	"usrName":	"",
+	"usrNameArray":	["", ""],
+	"usrSqno":	0,
+	"ussSqnoArray":	[0, 0],
+	"jobSqno":	0,
+	"jobSqnoArray":	[0, 0],
+	"rate":	0,
+	"rateArray":	[0, 0],
+	"price":	0,
+	"priceArray":	[0, 0]
+}
+		},
+		{
 			"type": "McBaseOrdrT",
 			"value": {
-	"id":	66,
-	"usrType":	66,
-	"usrName":	"BBBBBBB",
-	"usrNameArray":	["BBBBBBB", "BBBBBBB"],
-	"usrSqno":	1111638594,
-	"ussSqnoArray":	[1111638594, 1111638594],
-	"jobSqno":	4774451407313060418,
-	"jobSqnoArray":	[4774451407313060418, 4774451407313060418],
-	"price":	156842099844.51764,
-	"priceArray":	[156842099844.51764, 156842099844.51764]
+	"taskSqno":	0,
+	"taskSqnoArray":	[0, 0],
+	"price":	0,
+	"priceArray":	[0, 0]
 }
 		},
 		{
 			"type": "McBaseOrdrArrayT",
 			"value": {
 	"mcBaseOrdrArray":	[{
-			"id":	66,
-			"usrType":	66,
-			"usrName":	"BBBBBBB",
-			"usrNameArray":	["BBBBBBB", "BBBBBBB"],
-			"usrSqno":	1111638594,
-			"ussSqnoArray":	[1111638594, 1111638594],
-			"jobSqno":	4774451407313060418,
-			"jobSqnoArray":	[4774451407313060418, 4774451407313060418],
-			"price":	156842099844.51764,
-			"priceArray":	[156842099844.51764, 156842099844.51764]
+			"taskSqno":	0,
+			"taskSqnoArray":	[0, 0],
+			"price":	0,
+			"priceArray":	[0, 0]
 		}, {
-			"id":	66,
-			"usrType":	66,
-			"usrName":	"BBBBBBB",
-			"usrNameArray":	["BBBBBBB", "BBBBBBB"],
-			"usrSqno":	1111638594,
-			"ussSqnoArray":	[1111638594, 1111638594],
-			"jobSqno":	4774451407313060418,
-			"jobSqnoArray":	[4774451407313060418, 4774451407313060418],
-			"price":	156842099844.51764,
-			"priceArray":	[156842099844.51764, 156842099844.51764]
+			"taskSqno":	0,
+			"taskSqnoArray":	[0, 0],
+			"price":	0,
+			"priceArray":	[0, 0]
 		}]
 }
 		},
@@ -52,30 +59,18 @@
 			"value": {
 	"mcBaseOrdrAry":	{
 		"mcBaseOrdrArray":	[{
-				"id":	66,
-				"usrType":	66,
-				"usrName":	"BBBBBBB",
-				"usrNameArray":	["BBBBBBB", "BBBBBBB"],
-				"usrSqno":	1111638594,
-				"ussSqnoArray":	[1111638594, 1111638594],
-				"jobSqno":	4774451407313060418,
-				"jobSqnoArray":	[4774451407313060418, 4774451407313060418],
-				"price":	156842099844.51764,
-				"priceArray":	[156842099844.51764, 156842099844.51764]
+				"taskSqno":	0,
+				"taskSqnoArray":	[0, 0],
+				"price":	0,
+				"priceArray":	[0, 0]
 			}, {
-				"id":	66,
-				"usrType":	66,
-				"usrName":	"BBBBBBB",
-				"usrNameArray":	["BBBBBBB", "BBBBBBB"],
-				"usrSqno":	1111638594,
-				"ussSqnoArray":	[1111638594, 1111638594],
-				"jobSqno":	4774451407313060418,
-				"jobSqnoArray":	[4774451407313060418, 4774451407313060418],
-				"price":	156842099844.51764,
-				"priceArray":	[156842099844.51764, 156842099844.51764]
+				"taskSqno":	0,
+				"taskSqnoArray":	[0, 0],
+				"price":	0,
+				"priceArray":	[0, 0]
 			}]
 	},
-	"pUsrDef":	4774451407313060418
+	"pUsrDef":	0
 }
 		}
 	]
