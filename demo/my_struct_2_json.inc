@@ -35,8 +35,6 @@ gcc  ../cJSON/cJSON.c ../struct2json/src/*.c my_struct_2_json.c  -I../cJSON -lm 
 #include <stdio.h>
 #include <stdlib.h>
 #include "../cJSON/cJSON.h"
-#include "../struct2json/inc/s2jdef.h"
-#include "../struct2json/inc/s2j.h"
 #include "../struct2json/inc/s2j_ex.h"
 
 

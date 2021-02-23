@@ -29,6 +29,7 @@
 #ifndef __S2J_EX_H__
 #define __S2J_EX_H__
 
+#include "s2j.h"
 
 #ifdef __cplusplus
 extern "C" {

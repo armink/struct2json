@@ -163,12 +163,12 @@ void *json_to_struct_McOcoBaseOrdrT(cJSON* json_obj)
  int main(void)
  {
 	
-    char file_name[] = "struct_define.json";
+    char file_name[] = "struct_defination.json";
     FILE *fp;
 
     fp = fopen(file_name, "w");
     if (NULL == fp) return 1;
-    fprintf(fp,"{\n\t\"struct\": [\n\t\t{\n\t\t\t\"type\": \"void*\",\n\t\t\t\"value\": \"null\"\n\t\t}"); 
+    fprintf(fp,"{\n\t\"typedefine\": [\n\t\t{\n\t\t\t\"struct\": \"void*\",\n\t\t\t\"value\": \"null\"\n\t\t}"); 
 
     TEST_S2J_STRUCT(McUsrInfoT, 0 , fp);
     TEST_S2J_STRUCT(McBaseOrdrT, 0 , fp);
