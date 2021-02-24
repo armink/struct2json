@@ -120,7 +120,7 @@ for item in struct_str_split_list:
                         if len(para_name_item)==2: # 处理字符数组的情况，只取名字，舍弃中括号部分
                             para_name = para_name_item[0]
                             s2j_code_str_concat = s2j_code_str_concat+ "s2j_json_set_basic_element(json_obj_, struct_obj_, string, " + para_name + ");\n\t"
-                            j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj,string, " + para_name + ");\n\t"
+                            j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj, string, " + para_name + ");\n\t"
                         elif len(para_name_item)==3: # 处理二维字符数组的情况
                             para_name = para_name_item[0]
                             # left_symbol = 0  # 找到[位置
@@ -154,7 +154,7 @@ for item in struct_str_split_list:
                     s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_struct_array_element_by_func(json_obj_, struct_obj_, "+ para_type +","+para_name+ ","+list_size+");\n\t"
                     j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_struct_array_element_by_func(struct_obj_, json_obj, "+ para_type +","+para_name+");\n\t"
                 else:
-                    s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_struct_element_by_func(json_obj_, struct_obj_,"+ para_type +","+para_name+ ");\n\t"
+                    s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_struct_element_by_func(json_obj_, struct_obj_, "+ para_type +","+para_name+ ");\n\t"
                     j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_struct_element_by_func(struct_obj_, json_obj, " + para_type + "," + para_name + ");\n\t"
 
         s2j_code_str_concat_return = s2j_code_str_concat_return + s2j_code_str_concat # #"return json_obj_;\n}"
@@ -216,7 +216,7 @@ void_main_header = r"""
 
     fp = fopen(file_name, "w");
     if (NULL == fp) return 1;
-    fprintf(fp,"{\n\t\"typedefine\": [\n\t\t{\n\t\t\t\"struct\": \"void*\",\n\t\t\t\"value\": \"null\"\n\t\t}"); 
+    fprintf(fp,"{\n\t\"struct\": [\n\t\t{\n\t\t\t\"type\": \"void*\",\n\t\t\t\"value\": null\n\t\t}"); 
 
 """
 void_main_tail = r"""    
@@ -232,7 +232,7 @@ void_main_tail = r"""
 }
 #endif /* end of __cplusplus */
 """
-str_return = head_str + return_code + "#ifdef DEBUGS2J \n int main(void)\n" +" {\n\t" + void_main_header + str_return + void_main_tail
+str_return = head_str + return_code + "#ifdef DEBUGS2J \n int s2j_test(void)\n" +" {\n\t" + void_main_header + str_return + void_main_tail
 #print(str_return)
 
 error_return = error_print_json2bin + "\n" + "*************************************" + "\n" + error_print_bin2json

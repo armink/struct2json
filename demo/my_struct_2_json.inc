@@ -27,7 +27,7 @@
  */
 
 /*
-gcc  ../cJSON/cJSON.c ../struct2json/src/*.c my_struct_2_json.c  -I../cJSON -lm -DDEBUGS2J -g -o tests2j
+gcc ../cJSON/cJSON.c ../struct2json/src/*.c ./*.c -I ../cJSON/ -I ../struct2json/inc/ -lm -DDEBUGS2J  -g -o tests2j
 
 */
 
@@ -35,7 +35,7 @@ gcc  ../cJSON/cJSON.c ../struct2json/src/*.c my_struct_2_json.c  -I../cJSON -lm 
 #include <stdio.h>
 #include <stdlib.h>
 #include "../cJSON/cJSON.h"
-#include "../struct2json/inc/s2j_ex.h"
+#include "../struct2json/inc/s2j.h"
 
 
 #ifndef CHECK_NOT_NULL
@@ -72,18 +72,18 @@ do\
             memset(&struct_obj##type, value, sizeof(type));  \
             cJSON *json_obj##type = struct_to_json_##type(&struct_obj##type); \
             char* str_json##type = cJSON_Print(json_obj##type); \
-            printf("%s: %s\n",#type, str_json##type); \
+            printf("s2j:\n%s: %s\n",#type, str_json##type); \
             fprintf(file,",\n\t\t{\n\t\t\t\"type\": \"%s\",\n\t\t\t\"value\": %s\n\t\t}", #type, str_json##type); \
             type *p_struct_obj##type =(type *)json_to_struct_##type(json_obj##type); \
             int cmp##type = memcmp(p_struct_obj##type, &struct_obj##type, sizeof(type)); \
-            printf("%s:memcmp:%d\n",#type, cmp##type); \
+            printf("\n"); \
             cJSON *json_obj2##type = struct_to_json_##type(p_struct_obj##type); \
             char* str_json2##type = cJSON_Print(json_obj2##type); \
-            printf("%s: %s\n",#type, str_json2##type); \
+            printf("s2j2s2j:\n%s: %s\n",#type, str_json2##type); \
             int str_cmp##type = strcmp(str_json##type, str_json2##type); \
-            printf("%s:strcmp:%d\n",#type, str_cmp##type); \
+            printf("\n%s:strcmp:%d\n",#type, str_cmp##type); \
             cJSON_bool json_cmp##type = cJSON_Compare(json_obj##type, json_obj2##type, 1); \
-            printf("%s:json_cmp:%d\n",#type, json_cmp##type); \
+            printf("%s:json_cmp:%d\n\n\n",#type, json_cmp##type); \
             free(str_json##type);    \
             free(str_json2##type); \
             s2j_delete_struct_obj(p_struct_obj##type); \

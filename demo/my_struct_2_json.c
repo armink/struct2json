@@ -72,7 +72,7 @@ void *json_to_struct_McUsrInfoT(cJSON* json_obj)
 	s2j_struct_get_basic_element(struct_obj_,json_obj, int, id);
 	s2j_struct_get_array_element(struct_obj_,json_obj, int, idArray);
 	s2j_struct_get_basic_element(struct_obj_,json_obj, int, usrType);
-	s2j_struct_get_basic_element(struct_obj_,json_obj,string, usrName);
+	s2j_struct_get_basic_element(struct_obj_,json_obj, string, usrName);
 	s2j_struct_get_array_element(struct_obj_,json_obj, string, usrNameArray);
 	s2j_struct_get_basic_element(struct_obj_,json_obj, int, usrSqno);
 	s2j_struct_get_array_element(struct_obj_,json_obj, int, ussSqnoArray);
@@ -147,7 +147,7 @@ cJSON *struct_to_json_McOcoBaseOrdrT(void* struct_obj)
 {
 	s2j_create_json_obj(json_obj_);
 	McOcoBaseOrdrT *struct_obj_ = (McOcoBaseOrdrT *)struct_obj;
-	s2j_json_set_struct_element_by_func(json_obj_, struct_obj_,McBaseOrdrArrayT,mcBaseOrdrAry);
+	s2j_json_set_struct_element_by_func(json_obj_, struct_obj_, McBaseOrdrArrayT,mcBaseOrdrAry);
 	s2j_json_set_basic_element(json_obj_, struct_obj_, int,  pUsrDef);
 	return json_obj_;
 }
@@ -160,7 +160,7 @@ void *json_to_struct_McOcoBaseOrdrT(cJSON* json_obj)
 	return struct_obj_;
 }
 #ifdef DEBUGS2J 
- int main(void)
+ int s2j_test(void)
  {
 	
     char file_name[] = "struct_defination.json";
@@ -168,12 +168,12 @@ void *json_to_struct_McOcoBaseOrdrT(cJSON* json_obj)
 
     fp = fopen(file_name, "w");
     if (NULL == fp) return 1;
-    fprintf(fp,"{\n\t\"typedefine\": [\n\t\t{\n\t\t\t\"struct\": \"void*\",\n\t\t\t\"value\": \"null\"\n\t\t}"); 
+    fprintf(fp,"{\n\t\"struct\": [\n\t\t{\n\t\t\t\"type\": \"void*\",\n\t\t\t\"value\": null\n\t\t}"); 
 
-    TEST_S2J_STRUCT(McUsrInfoT, 0 , fp);
-    TEST_S2J_STRUCT(McBaseOrdrT, 0 , fp);
-    TEST_S2J_STRUCT(McBaseOrdrArrayT, 0 , fp);
-    TEST_S2J_STRUCT(McOcoBaseOrdrT, 0 , fp);
+    TEST_S2J_STRUCT(McUsrInfoT, 66 , fp);
+    TEST_S2J_STRUCT(McBaseOrdrT, 66 , fp);
+    TEST_S2J_STRUCT(McBaseOrdrArrayT, 66 , fp);
+    TEST_S2J_STRUCT(McOcoBaseOrdrT, 66 , fp);
     
     fprintf(fp,"\n\t]\n}");
     fclose(fp);
