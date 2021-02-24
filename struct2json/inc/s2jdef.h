@@ -223,30 +223,6 @@ typedef struct {
         } \
     }
 
-#define S2J_STRUCT_GET_ARRAY_ELEMENT_EX(to_struct, from_json, type, _element, size, _defval) \
-    { \
-        size_t index = 0, realsize = 0; \
-        if (from_json) { \
-            cJSON *array = NULL, *array_element = NULL; \
-            array = cJSON_GetObjectItem(from_json, #_element); \
-            if (array) { \
-                realsize = cJSON_GetArraySize(array); \
-                while (index < realsize) { \
-                    array_element = cJSON_GetArrayItem(array, index); \
-                    S2J_STRUCT_ARRAY_GET_ELEMENT_EX(to_struct, array_element, type, _element, index++, _defval); \
-                } \
-            } else { \
-                while (index < size) { \
-                    S2J_STRUCT_ARRAY_GET_ELEMENT_EX(to_struct, array_element, type, _element, index++, _defval); \
-                } \
-            } \
-        } else { \
-            while (index < size) { \
-                S2J_STRUCT_ARRAY_GET_ELEMENT_EX(to_struct, from_json, type, _element, index++, _defval); \
-            } \
-        } \
-    }
-	
 #define S2J_STRUCT_GET_STRUCT_ELEMENT(child_struct, to_struct, child_json, from_json, type, _element) \
     type *child_struct = &((to_struct)->_element); \
     cJSON *child_json = cJSON_GetObjectItem(from_json, #_element);
