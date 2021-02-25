@@ -10,17 +10,6 @@ for line in lines:
     struct_str += ' '.join(line.split())
 struct_str = re.sub(r'((?<=\n)|^)[\t]*\/\*.*?\*\/\n?|\/\*.*?\*\/|((?<=\n)|^)[\t]*\/\/[^\n]*\n|\/\/[^\n]*', '',struct_str)
 
-head_str = r"""
-#include "inc/mc_usr_def.h"
-#include "my_struct_2_json.inc"
-#include "my_struct_2_json.h"
-
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-    """
-
 return_code = ""
 #使用typedef进行元素分割，并去除列表中空元素
 struct_str_split_list = [x for x in struct_str.split("typedef") if x!=""]
@@ -205,11 +194,17 @@ content = content + h_tail
 file.write(content.strip())
 file.close()
 
+head_str = r"""
+#include "inc/mc_usr_def.h"
+#include "my_struct_2_json.inc"
+#include "my_struct_2_json.h"
 
-str_return = ""
-for i in range(len(struct_name_return.split())):
-    str_return = str_return + "    TEST_S2J_STRUCT(" + struct_name_return.split()[i] + ", 0 , fp);\n"
-    #print(str_return)
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+    """
+
 void_main_header = r"""
     char file_name[] = "struct_defination.json";
     FILE *fp;
@@ -219,9 +214,66 @@ void_main_header = r"""
     fprintf(fp,"{\n\t\"struct\": [\n\t\t{\n\t\t\t\"type\": \"void*\",\n\t\t\t\"value\": null\n\t\t}"); 
 
 """
-void_main_tail = r"""    
+
+str_return = ""
+str_s2j_test = ""
+for i in range(len(struct_name_return.split())):
+    str_s2j_test = str_s2j_test + "    TEST_S2J_STRUCT(" + struct_name_return.split()[i] + ", 0 , fp);\n"
+    #print(str_s2j_test)
+
+str_s2j_test_tail = r"""    
     fprintf(fp,"\n\t]\n}");
     fclose(fp);
+    return 0;
+}
+
+"""
+
+str_s2j_test2_header = r"""
+
+ int s2j_test2(void)
+ {
+
+    char file_name[] = "struct_defination.json";
+    FILE *fp;
+
+    fp = fopen(file_name, "rb");
+    if (NULL == fp) return 1;
+
+   fseek(fp,0L,SEEK_END);
+   int flen=ftell(fp);
+   char* p=(char *)malloc(flen+1);
+   if(p==NULL)
+   {
+        fclose(fp);
+        return 0;
+    }
+    fseek(fp,0L,SEEK_SET);
+    fread(p,flen,1,fp);
+    p[flen]=0;
+
+    printf("\nstruct_defination.json:\n%s\n",p);
+
+    cJSON *json_obj =cJSON_Parse(p);
+    CHECK_NOT_NULL(json_obj)
+    cJSON *json_struct = cJSON_GetObjectItem(json_obj, "struct");
+    CHECK_NOT_NULL(json_struct)
+
+    int array_size = cJSON_GetArraySize(json_struct);
+    printf("\nsize:\n%d\n",array_size);
+    int i = 0; \
+
+"""
+
+str_s2j_test2 = ""
+for i in range(len(struct_name_return.split())):
+    str_s2j_test2 = str_s2j_test2 + "    TEST_S2J_JSON(" + struct_name_return.split()[i] + ", array_size);\n"
+    #print(str_s2j_test2)
+
+
+void_main_tail = r"""    
+    fclose(fp);
+    free(p);
     return 0;
 }
 
@@ -232,7 +284,7 @@ void_main_tail = r"""
 }
 #endif /* end of __cplusplus */
 """
-str_return = head_str + return_code + "#ifdef DEBUGS2J \n int s2j_test(void)\n" +" {\n\t" + void_main_header + str_return + void_main_tail
+str_return = head_str + return_code + "#ifdef DEBUGS2J \n int s2j_test(void)\n" +" {\n\t" + void_main_header + str_s2j_test + str_s2j_test_tail + str_s2j_test2_header + str_s2j_test2 + void_main_tail
 #print(str_return)
 
 error_return = error_print_json2bin + "\n" + "*************************************" + "\n" + error_print_bin2json

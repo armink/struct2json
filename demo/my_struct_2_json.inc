@@ -74,7 +74,10 @@ do\
             char* str_json##type = cJSON_Print(json_obj##type); \
             printf("s2j:\n%s: %s\n",#type, str_json##type); \
             fprintf(file,",\n\t\t{\n\t\t\t\"type\": \"%s\",\n\t\t\t\"value\": %s\n\t\t}", #type, str_json##type); \
-            type *p_struct_obj##type =(type *)json_to_struct_##type(json_obj##type); \
+            cJSON *json_obj1##type =cJSON_Parse(str_json##type); \
+            cJSON_bool json_cmp1##type = cJSON_Compare(json_obj ##type, json_obj1##type, 1); \
+            printf("%s:json_cmp1:%d\n\n\n",#type, json_cmp1##type); \
+            type *p_struct_obj##type =(type *)json_to_struct_##type(json_obj1##type); \
             int cmp##type = memcmp(p_struct_obj##type, &struct_obj##type, sizeof(type)); \
             printf("\n"); \
             cJSON *json_obj2##type = struct_to_json_##type(p_struct_obj##type); \
@@ -82,14 +85,47 @@ do\
             printf("s2j2s2j:\n%s: %s\n",#type, str_json2##type); \
             int str_cmp##type = strcmp(str_json##type, str_json2##type); \
             printf("\n%s:strcmp:%d\n",#type, str_cmp##type); \
-            cJSON_bool json_cmp##type = cJSON_Compare(json_obj##type, json_obj2##type, 1); \
-            printf("%s:json_cmp:%d\n\n\n",#type, json_cmp##type); \
+            cJSON_bool json_cmp2##type = cJSON_Compare(json_obj##type, json_obj2##type, 1); \
+            printf("%s:json_cmp2:%d\n\n\n",#type, json_cmp2##type); \
             free(str_json##type);    \
             free(str_json2##type); \
             s2j_delete_struct_obj(p_struct_obj##type); \
             s2j_delete_json_obj(json_obj##type); \
+            s2j_delete_json_obj(json_obj1##type); \
             s2j_delete_json_obj(json_obj2##type); \
 
+
+#define TEST_S2J_JSON(type, size) \
+    cJSON *json_struct_##type = NULL; \
+    i = 0; \
+    for (; i < size;i++) { \
+        cJSON *json_struct_item = cJSON_GetArrayItem(json_struct, i); \
+        cJSON *json_struct_item_type = cJSON_GetObjectItem(json_struct_item, "type"); \
+        char* str_type = json_struct_item_type->valuestring; \
+        if (0 == strcmp(#type, str_type))  { \
+            json_struct_##type = cJSON_GetObjectItem(json_struct_item, "value"); \
+            printf("\ntype:%s:\n",#type); \
+            break; \
+        } \
+    } \
+    if (json_struct_##type != NULL) { \
+        cJSON * json_obj1##type = json_struct_##type; \
+        char* str_json1##type = cJSON_Print(json_obj1##type); \
+        printf("\nj2str:\n%s: %s\n",#type, str_json1##type); \
+        type *p_struct_obj##type =(type *)json_to_struct_##type(json_obj1##type); \
+        cJSON *json_obj2##type = struct_to_json_##type(p_struct_obj##type); \
+        char* str_json2##type = cJSON_Print(json_obj2##type); \
+        printf("\nj2s2j:\n%s: %s\n",#type, str_json2##type); \
+        int str_cmp##type = strcmp(str_json1##type, str_json2##type); \
+        printf("\n%s:strcmp:%d\n",#type, str_cmp##type); \
+        cJSON_bool json_cmp##type = cJSON_Compare(json_obj1##type, json_obj2##type, 1); \
+        printf("%s:json_cmp:%d\n\n\n",#type, json_cmp##type); \
+        free(str_json1##type);    \
+        free(str_json2##type); \
+        s2j_delete_struct_obj(p_struct_obj##type); \
+        s2j_delete_json_obj(json_obj1##type); \
+        s2j_delete_json_obj(json_obj2##type); \
+    }
 
 #endif// DEBUGS2J
 

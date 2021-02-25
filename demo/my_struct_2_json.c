@@ -170,13 +170,57 @@ void *json_to_struct_McOcoBaseOrdrT(cJSON* json_obj)
     if (NULL == fp) return 1;
     fprintf(fp,"{\n\t\"struct\": [\n\t\t{\n\t\t\t\"type\": \"void*\",\n\t\t\t\"value\": null\n\t\t}"); 
 
-    TEST_S2J_STRUCT(McUsrInfoT, 66 , fp);
-    TEST_S2J_STRUCT(McBaseOrdrT, 66 , fp);
-    TEST_S2J_STRUCT(McBaseOrdrArrayT, 66 , fp);
-    TEST_S2J_STRUCT(McOcoBaseOrdrT, 66 , fp);
+    TEST_S2J_STRUCT(McUsrInfoT, 0 , fp);
+    TEST_S2J_STRUCT(McBaseOrdrT, 0 , fp);
+    TEST_S2J_STRUCT(McBaseOrdrArrayT, 0 , fp);
+    TEST_S2J_STRUCT(McOcoBaseOrdrT, 0 , fp);
     
     fprintf(fp,"\n\t]\n}");
     fclose(fp);
+    return 0;
+}
+
+
+
+ int s2j_test2(void)
+ {
+
+    char file_name[] = "struct_defination.json";
+    FILE *fp;
+
+    fp = fopen(file_name, "rb");
+    if (NULL == fp) return 1;
+
+   fseek(fp,0L,SEEK_END);
+   int flen=ftell(fp);
+   char* p=(char *)malloc(flen+1);
+   if(p==NULL)
+   {
+        fclose(fp);
+        return 0;
+    }
+    fseek(fp,0L,SEEK_SET);
+    fread(p,flen,1,fp);
+    p[flen]=0;
+
+    printf("\nstruct_defination.json:\n%s\n",p);
+
+    cJSON *json_obj =cJSON_Parse(p);
+    CHECK_NOT_NULL(json_obj)
+    cJSON *json_struct = cJSON_GetObjectItem(json_obj, "struct");
+    CHECK_NOT_NULL(json_struct)
+
+    int array_size = cJSON_GetArraySize(json_struct);
+    printf("\nsize:\n%d\n",array_size);
+    int i = 0; \
+
+    TEST_S2J_JSON(McUsrInfoT, array_size);
+    TEST_S2J_JSON(McBaseOrdrT, array_size);
+    TEST_S2J_JSON(McBaseOrdrArrayT, array_size);
+    TEST_S2J_JSON(McOcoBaseOrdrT, array_size);
+    
+    fclose(fp);
+    free(p);
     return 0;
 }
 
