@@ -30,6 +30,10 @@
 #include <stdint.h>
 #include <stdio.h>
 
+#ifdef DEBUGS2J
+extern int s2j_test(void);
+#endif// DEBUGS2J
+
 typedef struct {
     char name[16];
 } Hometown;
@@ -123,6 +127,10 @@ int main(void) {
 
     s2j_delete_json_obj(json_student);
     s2j_delete_struct_obj(converted_student_obj);
+
+#ifdef DEBUGS2J
+    s2j_test();
+#endif// DEBUGS2J
 
     return 0;
 }

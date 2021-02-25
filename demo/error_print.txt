@@ -1,0 +1,10 @@
+struct_para_json2bin(McUsrInfoT,bin_para,type,value)
+struct_para_json2bin(McBaseOrdrT,bin_para,type,value)
+struct_para_json2bin(McBaseOrdrArrayT,bin_para,type,value)
+struct_para_json2bin(McOcoBaseOrdrT,bin_para,type,value)
+
+*************************************
+struct_para_bin2json(McUsrInfoT,bin_para,type,json_para)
+struct_para_bin2json(McBaseOrdrT,bin_para,type,json_para)
+struct_para_bin2json(McBaseOrdrArrayT,bin_para,type,json_para)
+struct_para_bin2json(McOcoBaseOrdrT,bin_para,type,json_para)

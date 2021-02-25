@@ -50,6 +50,26 @@ typedef struct {
 |:-----:|:-----:|
 |![JSON转结构体-使用前](https://git.oschina.net/Armink/struct2json/raw/master/docs/zh/images/not_use_struct2json_for_json.png)| ![JSON转结构体-使用后](https://git.oschina.net/Armink/struct2json/raw/master/docs/zh/images/used_struct2json_for_json.png)|
 
+### V2.0版本新增功能【yuxuebao】
+#### 1) 更新cJSON库至1.7.12版本，并扩充实现，支持int64 (long long)类型数据。PS：cJSON原来int64类型以double方式处理，如果超过16位会有精度损失。
+#### 2) 扩展struct2json功能，增加支持结构体内包含结构体成员，支持包含数组成员。
+#### 3) 增加struct2json 结构体与JSON转换代码自动生成的Python脚本，支持从头文件中提取结构体定义，并根据结构体定义自动生成结构体与JSON互转代码，并提供相关示例。
+
+### V2.0 使用说明：
+#### 1) 提取结构体定义:
+		将头文件（eg:mc_usr_def.h）放在demo\inc目录下；
+		执行generate_struct_defination.py，生成struct_defination.txt；
+#### 2) 生成结构体与JSON互转代码:
+		执行generate_s2j_code.py，根据结构体定义自动生成结构体与JSON互转代码：my_struct_2_json.c,my_struct_2_json.h；
+		该脚本支持的参数类型有 基本类型 和 结构体类型，enum和指针按int处理，不支持union和位域；
+		支持的数组类型:支持基本类型一维数组，结构体一维数组，字符二维数组（字符串数组）
+#### 3) 测试结构体与JSON转换:
+		cd demo
+		编译测试代码，gcc ../cJSON/cJSON.c ../struct2json/src/*.c ./*.c -I ../cJSON/ -I ../struct2json/inc/ -lm -DDEBUGS2J  -g -o tests2j
+		测试 ./tests2j 
+		查看output输出和生成的JSON样例文件struct_defination.json；
+		预期输出：*:strcmp:0     *:strcmp:0*:json_cmp:1
+
 欢迎大家 **fork and pull request**([Github](https://github.com/armink/struct2json)|[OSChina](http://git.oschina.net/armink/struct2json)|[Coding](https://coding.net/u/armink/p/struct2json/git)) 。如果觉得这个开源项目很赞，可以点击[项目主页](https://github.com/armink/struct2json) 右上角的**Star**，同时把它推荐给更多有需要的朋友。
 
 ## 文档
@@ -57,5 +77,8 @@ typedef struct {
 具体内容参考[`\docs\zh\`](https://github.com/armink/struct2json/tree/master/docs/zh)下的文件。务必保证在 **阅读文档** 后再使用。
 
 ## 许可
+- Armink (original author)
+- Yu Xuebao (current maintainer)
+- and the other contributors (CONTRIBUTORS.md)
 
 MIT Copyright (c) armink.ztl@gmail.com
