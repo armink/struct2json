@@ -32,6 +32,7 @@
 
 #ifdef DEBUGS2J
 extern int s2j_test(void);
+extern int s2j_test2(void);
 #endif// DEBUGS2J
 
 typedef struct {
@@ -130,6 +131,7 @@ int main(void) {
 
 #ifdef DEBUGS2J
     s2j_test();
+    s2j_test2();
 #endif// DEBUGS2J
 
     return 0;
