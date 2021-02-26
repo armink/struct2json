@@ -106,6 +106,17 @@ CJSON_PUBLIC(char *) cJSON_GetStringValue(const cJSON * const item)
     return item->valuestring;
 }
 
+CJSON_PUBLIC(long long) cJSON_GetIntValue(const cJSON * const item)
+{
+    if (!cJSON_IsInt(item))
+    {
+        return 0;
+    }
+
+    return item->valueint;
+}
+
+
 CJSON_PUBLIC(double) cJSON_GetNumberValue(const cJSON * const item)
 {
     if (!cJSON_IsNumber(item))
@@ -2991,7 +3002,7 @@ CJSON_PUBLIC(cJSON_bool) cJSON_IsNumber(const cJSON * const item)
         return false;
     }
 
-    return (item->type & 0xFF) == cJSON_Number;
+    return ((item->type & 0xFF) == cJSON_Number || (item->type & 0xFF) == cJSON_Int);
 }
 
 CJSON_PUBLIC(cJSON_bool) cJSON_IsString(const cJSON * const item)
