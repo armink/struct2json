@@ -56,7 +56,7 @@ typedef struct {
 #### 3) 增加struct2json 结构体与JSON转换代码自动生成的Python脚本，支持从头文件中提取结构体定义，并根据结构体定义自动生成结构体与JSON互转代码，并提供相关示例。
 
 ### V2.1版本新增功能【yuxuebao@msn.com】
-#### 1) 扩展struct2json功能，增加支持C++结构体,支持string,bool类型成员和数组。
+#### 1) 扩展struct2json功能，增加支持C++结构体,支持string,bool,wchar_t类型成员和数组。
 
 ### V2.x 使用说明：
 #### 1) 提取结构体定义:
