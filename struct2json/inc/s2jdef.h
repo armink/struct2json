@@ -89,7 +89,7 @@ typedef struct {
     { \
         if (from_json) { \
             json_temp = cJSON_GetObjectItem(from_json, #_element); \
-            if (json_temp) (to_struct)->_element = json_temp->valuestring; \
+            if (json_temp) (to_struct)->_element.assign( json_temp->valuestring); \
             else (to_struct)->_element.assign(1, _defval); \
         } else { \
             (to_struct)->_element.assign(1, _defval); \
@@ -120,7 +120,7 @@ typedef struct {
 
 #ifdef __cplusplus
 #define S2J_STRUCT_ARRAY_GET_stdstring_ELEMENT(to_struct, from_json, _element, index) \
-    (to_struct)->_element[index] = from_json->valuestring;
+    (to_struct)->_element[index].assign( from_json->valuestring);
 #endif
 
 #define S2J_STRUCT_ARRAY_GET_double_ELEMENT(to_struct, from_json, _element, index) \
@@ -139,7 +139,7 @@ typedef struct {
 
 #ifdef __cplusplus
 #define S2J_STRUCT_ARRAY_GET_stdstring_ELEMENT_EX(to_struct, from_json, _element, index, _defval) \
-    if (from_json) (to_struct)->_element[index] = from_json->valuestring; \
+    if (from_json) (to_struct)->_element[index].assign( from_json->valuestring); \
     else (to_struct)->_element[index].assign(1, _defval);
 #endif
 
