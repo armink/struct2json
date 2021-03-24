@@ -51,13 +51,12 @@ typedef struct {
 |![JSON转结构体-使用前](https://git.oschina.net/Armink/struct2json/raw/master/docs/zh/images/not_use_struct2json_for_json.png)| ![JSON转结构体-使用后](https://git.oschina.net/Armink/struct2json/raw/master/docs/zh/images/used_struct2json_for_json.png)|
 
 ### V2.0版本新增功能【yuxuebao@msn.com】
-#### 1) 更新cJSON库至1.7.12版本，并扩充实现，支持int64 (long long)类型数据。PS：cJSON原来int64类型以double方式处理，如果超过16位会有精度损失。
+#### 1) 更新cJSON库至1.7.14版本，并扩充实现，支持int64 (long long)类型数据。PS：cJSON原来int64类型以double方式处理，如果超过16位会有精度损失。
 #### 2) 扩展struct2json功能，增加支持结构体内包含结构体成员，支持包含数组成员。
 #### 3) 增加struct2json 结构体与JSON转换代码自动生成的Python脚本，支持从头文件中提取结构体定义，并根据结构体定义自动生成结构体与JSON互转代码，并提供相关示例。
 
 ### V2.1版本新增功能【yuxuebao@msn.com】
 #### 1) 扩展struct2json功能，增加支持C++结构体,支持string,bool类型成员和数组。
-
 
 ### V2.x 使用说明：
 #### 1) 提取结构体定义:
