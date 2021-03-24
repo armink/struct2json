@@ -109,7 +109,7 @@ typedef struct {
     if (from_json) strncpy((to_struct)->_element[index], from_json->valuestring,sizeof((to_struct)->_element[0])-1); \
     else strncpy((to_struct)->_element[index], _defval,sizeof((to_struct)->_element[0])-1);
 
-#define S2J_STRUCT_ARRAY_GET_double_ELEMENT_EX(to_struct, from_json, _element, index) \
+#define S2J_STRUCT_ARRAY_GET_double_ELEMENT_EX(to_struct, from_json, _element, index, _defval) \
     if (from_json) (to_struct)->_element[index] = from_json->valuedouble; \
     else (to_struct)->_element[index] = _defval;
 
