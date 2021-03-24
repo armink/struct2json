@@ -74,7 +74,7 @@ typedef struct {
         V2.1+: g++ ../cJSON/cJSON.c ../struct2json/src/*.c ./*.c -I ../cJSON/ -I ../struct2json/inc/ -fpermissive -lm  -g -DDEBUGS2J -o tests2j
 		测试 ./tests2j 
 		查看output输出和生成的JSON样例文件struct_defination.json；
-		预期输出：*:strcmp:0     *:strcmp:0*:json_cmp:1
+		预期输出：*:strcmp:0     *:strcmp:0   *:json_cmp:1
 
 欢迎大家 **fork and pull request**([Github](https://github.com/armink/struct2json)|[OSChina](http://git.oschina.net/armink/struct2json)|[Coding](https://coding.net/u/armink/p/struct2json/git)) 。如果觉得这个开源项目很赞，可以点击[项目主页](https://github.com/armink/struct2json) 右上角的**Star**，同时把它推荐给更多有需要的朋友。
 
