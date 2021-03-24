@@ -66,8 +66,8 @@ do\
 
 
 #ifdef DEBUGS2J
-
-#define TEST_S2J_STRUCT_CPP(type, value, file) \
+#ifdef __cplusplus
+#define TEST_S2J_STRUCT(type, value, file) \
             type struct_obj##type; \
             cJSON *json_obj##type = struct_to_json_##type(&struct_obj##type); \
             char* str_json##type = cJSON_Print(json_obj##type); \
@@ -89,8 +89,8 @@ do\
             s2j_delete_struct_obj(p_struct_obj##type); \
             s2j_delete_json_obj(json_obj##type); \
             s2j_delete_json_obj(json_obj1##type); \
-            s2j_delete_json_obj(json_obj2##type); \
-
+            s2j_delete_json_obj(json_obj2##type);
+#else
 #define TEST_S2J_STRUCT(type, value, file) \
             type struct_obj##type; \
             memset(&struct_obj##type, value, sizeof(type));  \
@@ -116,8 +116,8 @@ do\
             s2j_delete_struct_obj(p_struct_obj##type); \
             s2j_delete_json_obj(json_obj##type); \
             s2j_delete_json_obj(json_obj1##type); \
-            s2j_delete_json_obj(json_obj2##type); \
-
+            s2j_delete_json_obj(json_obj2##type);
+#endif
 
 #define TEST_S2J_JSON(type, size) \
     cJSON *json_struct_##type = NULL; \

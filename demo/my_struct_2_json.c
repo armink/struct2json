@@ -213,12 +213,12 @@ void *json_to_struct_McOcoBaseOrdrT(cJSON* json_obj)
     fprintf(fp,"{\n\t\"struct\": [\n\t\t{\n\t\t\t\"type\": \"void*\",\n\t\t\t\"value\": null\n\t\t}");
 
 #ifdef __cplusplus
-    TEST_S2J_STRUCT_CPP(CppStructInfoT, 0 , fp);
+    TEST_S2J_STRUCT(CppStructInfoT, 0 , fp);
 #endif
-    TEST_S2J_STRUCT_CPP(McUsrInfoT, 0 , fp);
-    TEST_S2J_STRUCT_CPP(McBaseOrdrT, 0 , fp);
-    TEST_S2J_STRUCT_CPP(McBaseOrdrArrayT, 0 , fp);
-    TEST_S2J_STRUCT_CPP(McOcoBaseOrdrT, 0 , fp);
+    TEST_S2J_STRUCT(McUsrInfoT, 0 , fp);
+    TEST_S2J_STRUCT(McBaseOrdrT, 0 , fp);
+    TEST_S2J_STRUCT(McBaseOrdrArrayT, 0 , fp);
+    TEST_S2J_STRUCT(McOcoBaseOrdrT, 0 , fp);
 
     fprintf(fp,"\n\t]\n}");
     fclose(fp);

@@ -244,7 +244,7 @@ void_main_header = r"""
 str_return = ""
 str_s2j_test = ""
 for i in range(len(struct_name_return.split())):
-    str_s2j_test = str_s2j_test + "    TEST_S2J_STRUCT_CPP(" + struct_name_return.split()[i] + ", 0 , fp);\n"
+    str_s2j_test = str_s2j_test + "    TEST_S2J_STRUCT(" + struct_name_return.split()[i] + ", 0 , fp);\n"
     #print(str_s2j_test)
 
 str_s2j_test_tail = r"""    
