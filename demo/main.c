@@ -42,7 +42,7 @@ extern int s2j_test2(void);
 #endif
 #endif// DEBUGS2J
 
-#ifndef DEBUGS2J
+#ifndef __cplusplus
 typedef struct {
     char name[16];
 } Hometown;
@@ -115,7 +115,7 @@ static cJSON *struct_to_json(void* struct_obj) {
 #endif
 
 int main(void) {
-#ifndef DEBUGS2J
+#ifndef __cplusplus
     static Student orignal_student_obj = {
             .id = 24,
             .weight = 71.2,

@@ -10,7 +10,7 @@
 	"string1":	"",
 	"stringArray2":	["", ""],
 	"b1":	238,
-	"bArray2":	[45, 136]
+	"bArray2":	[93, 174]
 }
 		},
 		{
@@ -44,20 +44,20 @@
 	"taskSqno":	1,
 	"taskSqnoArray":	[0, 0],
 	"price":	0,
-	"priceArray":	[0, 6.94644090879169e-310]
+	"priceArray":	[0, 6.9268556744124e-310]
 }
 		},
 		{
 			"type": "McBaseOrdrArrayT",
 			"value": {
 	"mcBaseOrdrArray":	[{
-			"taskSqno":	6336,
-			"taskSqnoArray":	[-5299, 32766],
-			"price":	6.9464415281177e-310,
+			"taskSqno":	28480,
+			"taskSqnoArray":	[-534, 32767],
+			"price":	6.92685629373841e-310,
 			"priceArray":	[1.38338380835549e-322, 2.09064075663982e-317]
 		}, {
-			"taskSqno":	6392,
-			"taskSqnoArray":	[-5299, 32766],
+			"taskSqno":	28536,
+			"taskSqnoArray":	[-534, 32767],
 			"price":	4.94065645841247e-324,
 			"priceArray":	[2.08450495538412e-317, 2.09069609199215e-317]
 		}]
@@ -68,8 +68,8 @@
 			"value": {
 	"mcBaseOrdrAry":	{
 		"mcBaseOrdrArray":	[{
-				"taskSqno":	16016,
-				"taskSqnoArray":	[27272, 32735],
+				"taskSqno":	28304,
+				"taskSqnoArray":	[7854, 32643],
 				"price":	0,
 				"priceArray":	[0, 0]
 			}, {
