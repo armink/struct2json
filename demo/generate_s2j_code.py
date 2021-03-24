@@ -72,10 +72,10 @@ for item in struct_str_split_list:
                 #print(array_para_name_size)
                 para_name = para_name.split("[")[0]
                 s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_array_element(json_obj_, struct_obj_, int, "+ para_name + ","+ array_para_name_size+");\n\t"
-                j2s_code_str_concat = j2s_code_str_concat +"s2j_struct_get_array_element(struct_obj_,json_obj, int, "+para_name + ");\n\t"
+                j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_array_element(struct_obj_,json_obj, int, "+ para_name + ");\n\t"
             else:
-                s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_basic_element(json_obj_, struct_obj_, int, "+para_name+");\n\t"
-                j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj, int, "+para_name+");\n\t"
+                s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_basic_element(json_obj_, struct_obj_, int, "+ para_name+");\n\t"
+                j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj, int, "+ para_name+");\n\t"
         elif para_type.find("enum")!=-1 or para_type.find("CbT")!=-1:  # enum或函数指针（根据实际命名规范识别）
             #print(para_type)
             if "[" in para_name:
@@ -85,30 +85,44 @@ for item in struct_str_split_list:
                 #print(array_para_name_size)
                 para_name = para_name.split("[")[0]
                 s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_array_element(json_obj_, struct_obj_, int, "+ para_name + ","+ array_para_name_size+");\n\t"
-                j2s_code_str_concat = j2s_code_str_concat +"s2j_struct_get_array_element(struct_obj_,json_obj, int, "+para_name + ");\n\t"
+                j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_array_element(struct_obj_,json_obj, int, "+ para_name + ");\n\t"
             else:
-                s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_basic_element(json_obj_, struct_obj_, int, "+para_name+");\n\t"
-                j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj, int, "+para_name+");\n\t"
+                s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_basic_element(json_obj_, struct_obj_, int, "+ para_name+");\n\t"
+                j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj, int, "+ para_name+");\n\t"
+        elif para_type in ("string","std::string"): #c++ std::string
+            if "[" in para_name: # 处理c++ std::string数组的情况
+                #print(para_name)
+                left_symbol = para_name.find("[")  # 找到[位置
+                right_symbol = para_name.find("]")  # 找到]位置
+                array_para_name_size = para_name[left_symbol+1:right_symbol]
+                #print(array_para_name_size)
+                para_name = para_name.split("[")[0]
+                s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_array_element(json_obj_, struct_obj_, stdstring, "+ para_name + ","+ array_para_name_size+");\n\t"
+                j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_array_element(struct_obj_,json_obj, stdstring, "+ para_name + ");\n\t"
+            else:
+                s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_basic_element(json_obj_, struct_obj_, stdstring, " + para_name + ");\n\t"
+                j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj, stdstring, " + para_name + ");\n\t"
         else: #基本类型
-            if para_type in ("char","unsigned char","signed char","int","unsigned","unsigned int","signed int","short","unsigned short","signed short","long","unsigned long","signed long","long long","unsigned long long","signed long long","BOOL","bool","size_t","uint8_t","uint16_t","uint32_t","uint64_t","int8_t","int16_t","int32_t","int64_t","uint8","uint16","uint32","uint64","int8","int16","int32","int64","uint_fast64_t","__int128_t","__uint128_t","float","double","long double"):
+            if para_type in ("bool", "wchar_t", "char","unsigned char","signed char","int","unsigned","unsigned int","signed int","short","unsigned short","signed short","long","unsigned long","signed long","long long","unsigned long long","signed long long","BOOL","bool","size_t","uint8_t","uint16_t","uint32_t","uint64_t","int8_t","int16_t","int32_t","int64_t","uint8","uint16","uint32","uint64","int8","int16","int32","int64","uint_fast64_t","__int128_t","__uint128_t","float","double","long double"):
                 if para_type in ("float","double","long double","__int128_t","__uint128_t"): #浮点型、128位整型
                     if "[" in para_name:
                         #print(para_name)
                         left_symbol = para_name.find("[")  # 找到[位置
                         right_symbol = para_name.find("]")  # 找到]位置
                         array_para_name_size = para_name[left_symbol+1:right_symbol]
+                        #print(array_para_name_size)
                         para_name = para_name.split("[")[0]
                         s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_array_element(json_obj_, struct_obj_, double, "+ para_name + ","+ array_para_name_size+");\n\t"
-                        j2s_code_str_concat = j2s_code_str_concat +"s2j_struct_get_array_element(struct_obj_,json_obj, double, "+para_name + ");\n\t"
+                        j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_array_element(struct_obj_,json_obj, double, "+ para_name + ");\n\t"
                     else:
-                        s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_basic_element(json_obj_, struct_obj_, double, "+para_name+");\n\t"
-                        j2s_code_str_concat = j2s_code_str_concat +"s2j_struct_get_basic_element(struct_obj_,json_obj, double, "+para_name+");\n\t"
+                        s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_basic_element(json_obj_, struct_obj_, double, "+ para_name+");\n\t"
+                        j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj, double, "+ para_name+");\n\t"
                 elif para_type =="char" : # 字符串
                     if "[" in para_name: 
                         para_name_item = para_name.split("[")
                         if len(para_name_item)==2: # 处理字符数组的情况，只取名字，舍弃中括号部分
                             para_name = para_name_item[0]
-                            s2j_code_str_concat = s2j_code_str_concat+ "s2j_json_set_basic_element(json_obj_, struct_obj_, string, " + para_name + ");\n\t"
+                            s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_basic_element(json_obj_, struct_obj_, string, " + para_name + ");\n\t"
                             j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj, string, " + para_name + ");\n\t"
                         elif len(para_name_item)==3: # 处理二维字符数组的情况
                             para_name = para_name_item[0]
@@ -116,7 +130,7 @@ for item in struct_str_split_list:
                             right_symbol = para_name_item[1].find("]")  # 找到]位置
                             array_para_name_size = para_name_item[1][0:right_symbol]
                             s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_array_element(json_obj_, struct_obj_, string, "+ para_name + ","+ array_para_name_size+");\n\t"
-                            j2s_code_str_concat = j2s_code_str_concat +"s2j_struct_get_array_element(struct_obj_,json_obj, string, "+para_name + ");\n\t"
+                            j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_array_element(struct_obj_,json_obj, string, "+ para_name + ");\n\t"
                     else:
                         s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_basic_element(json_obj_, struct_obj_, int, " + para_name + ");\n\t"
                         j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj, int, " + para_name + ");\n\t"
@@ -129,10 +143,10 @@ for item in struct_str_split_list:
                         #print(array_para_name_size)
                         para_name = para_name.split("[")[0]
                         s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_array_element(json_obj_, struct_obj_, int, "+ para_name + ","+ array_para_name_size+");\n\t"
-                        j2s_code_str_concat = j2s_code_str_concat +"s2j_struct_get_array_element(struct_obj_,json_obj, int, "+para_name + ");\n\t"
+                        j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_array_element(struct_obj_,json_obj, int, "+ para_name + ");\n\t"
                     else:
-                        s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_basic_element(json_obj_, struct_obj_, int, "+para_name+");\n\t"
-                        j2s_code_str_concat = j2s_code_str_concat +"s2j_struct_get_basic_element(struct_obj_,json_obj, int, "+para_name+");\n\t"
+                        s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_basic_element(json_obj_, struct_obj_, int, "+ para_name+");\n\t"
+                        j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj, int, "+ para_name+");\n\t"
             else: #结构体类型的参数
                 if "[" in para_name:
                     # usrDefLst[MAX_LIST_MEM_TYPE]
@@ -143,7 +157,7 @@ for item in struct_str_split_list:
                     s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_struct_array_element_by_func(json_obj_, struct_obj_, "+ para_type +","+para_name+ ","+list_size+");\n\t"
                     j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_struct_array_element_by_func(struct_obj_, json_obj, "+ para_type +","+para_name+");\n\t"
                 else:
-                    s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_struct_element_by_func(json_obj_, struct_obj_, "+ para_type +","+para_name+ ");\n\t"
+                    s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_struct_element_by_func(json_obj_, struct_obj_, " + para_type +","+para_name+ ");\n\t"
                     j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_struct_element_by_func(struct_obj_, json_obj, " + para_type + "," + para_name + ");\n\t"
 
         s2j_code_str_concat_return = s2j_code_str_concat_return + s2j_code_str_concat # #"return json_obj_;\n}"
@@ -199,13 +213,25 @@ head_str = r"""
 #include "my_struct_2_json.inc"
 #include "my_struct_2_json.h"
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
     """
 
 void_main_header = r"""
+#ifdef DEBUGS2J 
+
+ int s2j_test(void)
+ {
+#ifdef __cplusplus
+    S2jHook s2jHookCpp = {
+        .malloc_fn = ::operator new,
+        .free_fn = ::operator delete,
+    };
+
+    s2j_init(&s2jHookCpp);
+#endif
+
     char file_name[] = "struct_defination.json";
     FILE *fp;
 
@@ -284,7 +310,7 @@ void_main_tail = r"""
 }
 #endif /* end of __cplusplus */
 """
-str_return = head_str + return_code + "#ifdef DEBUGS2J \n int s2j_test(void)\n" +" {\n\t" + void_main_header + str_s2j_test + str_s2j_test_tail + str_s2j_test2_header + str_s2j_test2 + void_main_tail
+str_return = head_str + return_code + "\n\t" + void_main_header + str_s2j_test + str_s2j_test_tail + str_s2j_test2_header + str_s2j_test2 + void_main_tail
 #print(str_return)
 
 error_return = error_print_json2bin + "\n" + "*************************************" + "\n" + error_print_bin2json

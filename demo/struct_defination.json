@@ -1,140 +1,88 @@
 {
-    "struct": [
-        {
-            "type": "void*",
-            "value": null
-        },
-        {
-            "type": "McUsrInfoT",
-            "value": {
-                "pInt": 0,
-                "pIntArray": [
-                    0,
-                    0
-                ],
-                "fun": 0,
-                "funArray": [
-                    0,
-                    0
-                ],
-                "day1": 0,
-                "day2": 0,
-                "day2Array": [
-                    0,
-                    0
-                ],
-                "id": 0,
-                "idArray": [
-                    0,
-                    0
-                ],
-                "usrType": 0,
-                "usrName": "",
-                "usrNameArray": [
-                    "",
-                    ""
-                ],
-                "usrSqno": 0,
-                "ussSqnoArray": [
-                    0,
-                    0
-                ],
-                "jobSqno": 0,
-                "jobSqnoArray": [
-                    0,
-                    0
-                ],
-                "rate": 0,
-                "rateArray": [
-                    0,
-                    0
-                ],
-                "price": 0,
-                "priceArray": [
-                    0,
-                    0
-                ]
-            }
-        },
-        {
-            "type": "McBaseOrdrT",
-            "value": {
-                "taskSqno": 0,
-                "taskSqnoArray": [
-                    0,
-                    0
-                ],
-                "price": 0,
-                "priceArray": [
-                    0,
-                    0
-                ]
-            }
-        },
-        {
-            "type": "McBaseOrdrArrayT",
-            "value": {
-                "mcBaseOrdrArray": [
-                    {
-                        "taskSqno": 0,
-                        "taskSqnoArray": [
-                            0,
-                            0
-                        ],
-                        "price": 0,
-                        "priceArray": [
-                            0,
-                            0
-                        ]
-                    },
-                    {
-                        "taskSqno": 0,
-                        "taskSqnoArray": [
-                            0,
-                            0
-                        ],
-                        "price": 0,
-                        "priceArray": [
-                            0,
-                            0
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "type": "McOcoBaseOrdrT",
-            "value": {
-                "mcBaseOrdrAry": {
-                    "mcBaseOrdrArray": [
-                        {
-                            "taskSqno": 0,
-                            "taskSqnoArray": [
-                                0,
-                                0
-                            ],
-                            "price": 0,
-                            "priceArray": [
-                                0,
-                                0
-                            ]
-                        },
-                        {
-                            "taskSqno": 0,
-                            "taskSqnoArray": [
-                                0,
-                                0
-                            ],
-                            "price": 0,
-                            "priceArray": [
-                                0,
-                                0
-                            ]
-                        }
-                    ]
-                },
-                "pUsrDef": 0
-            }
-        }
-    ]
+	"struct": [
+		{
+			"type": "void*",
+			"value": null
+		},
+		{
+			"type": "CppStructInfoT",
+			"value": {
+	"string1":	"",
+	"stringArray2":	["", ""],
+	"b1":	224,
+	"bArray2":	[146, 64],
+	"wc1":	0,
+	"wcArray":	[607207720, 32765]
+}
+		},
+		{
+			"type": "McUsrInfoT",
+			"value": {
+	"pInt":	3399988123389603631,
+	"pIntArray":	[3399988123389603631, 0],
+	"fun":	0,
+	"funArray":	[-72057594037927936, 0],
+	"day1":	0,
+	"day2":	1073741824,
+	"day2Array":	[0, 0],
+	"id":	47,
+	"idArray":	[47, 47],
+	"usrType":	47,
+	"usrName":	"///////",
+	"usrNameArray":	["////", ""],
+	"usrSqno":	0,
+	"ussSqnoArray":	[0, -16777216],
+	"jobSqno":	0,
+	"jobSqnoArray":	[0, 0],
+	"rate":	0,
+	"rateArray":	[0, 0],
+	"price":	0,
+	"priceArray":	[0, 0]
+}
+		},
+		{
+			"type": "McBaseOrdrT",
+			"value": {
+	"taskSqno":	1,
+	"taskSqnoArray":	[0, 32703],
+	"price":	0,
+	"priceArray":	[6.93967752719276e-310, 6.93967703304213e-310]
+}
+		},
+		{
+			"type": "McBaseOrdrArrayT",
+			"value": {
+	"mcBaseOrdrArray":	[{
+			"taskSqno":	24781,
+			"taskSqnoArray":	[64, 0],
+			"price":	2.09089371825049e-317,
+			"priceArray":	[6.93967765101035e-310, 0]
+		}, {
+			"taskSqno":	0,
+			"taskSqnoArray":	[0, 0],
+			"price":	0,
+			"priceArray":	[0, 1.3906499416489327e-309]
+		}]
+}
+		},
+		{
+			"type": "McOcoBaseOrdrT",
+			"value": {
+	"mcBaseOrdrAry":	{
+		"mcBaseOrdrArray":	[{
+				"taskSqno":	0,
+				"taskSqnoArray":	[0, 0],
+				"price":	0,
+				"priceArray":	[0, 0]
+			}, {
+				"taskSqno":	0,
+				"taskSqnoArray":	[0, 0],
+				"price":	0,
+				"priceArray":	[0, 0]
+			}]
+	},
+	"pUsrDef":	0
+}
+		}
+	]
 }

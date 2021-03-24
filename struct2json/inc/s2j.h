@@ -38,7 +38,8 @@ extern "C" {
 #endif
 
 /* struct2json software version number */
-#define S2J_SW_VERSION                "2.0.0"
+
+#define S2J_SW_VERSION                "2.1.0"
 
 
 /* Create JSON object */
