@@ -31,10 +31,15 @@
 #include <stdio.h>
 
 #ifdef DEBUGS2J
+#ifdef __cplusplus
 extern "C" {
 extern int s2j_test(void);
 extern int s2j_test2(void);
 }
+#else
+extern int s2j_test(void);
+extern int s2j_test2(void);
+#endif
 #endif// DEBUGS2J
 
 #ifndef DEBUGS2J

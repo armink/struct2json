@@ -9,15 +9,15 @@
 			"value": {
 	"string1":	"",
 	"stringArray2":	["", ""],
-	"b1":	0,
-	"bArray2":	[0, 0]
+	"b1":	238,
+	"bArray2":	[45, 136]
 }
 		},
 		{
 			"type": "McUsrInfoT",
 			"value": {
-	"pInt":	-72057594037927936,
-	"pIntArray":	[0, 0],
+	"pInt":	0,
+	"pIntArray":	[0, -72057594037927936],
 	"fun":	0,
 	"funArray":	[0, 0],
 	"day1":	0,
@@ -29,12 +29,12 @@
 	"usrName":	"",
 	"usrNameArray":	["", ""],
 	"usrSqno":	0,
-	"ussSqnoArray":	[791621423, 791621423],
-	"jobSqno":	3399988123389603631,
-	"jobSqnoArray":	[0, 0],
+	"ussSqnoArray":	[0, 1073741824],
+	"jobSqno":	0,
+	"jobSqnoArray":	[3399988123389603631, 3399988123389603631],
 	"rate":	0,
-	"rateArray":	[-1.7014118346046923e+38, 0],
-	"price":	0,
+	"rateArray":	[0, 0],
+	"price":	-5.48612406879369e+303,
 	"priceArray":	[0, 0]
 }
 		},
@@ -43,23 +43,23 @@
 			"value": {
 	"taskSqno":	1,
 	"taskSqnoArray":	[0, 0],
-	"price":	6.9033239835166e-310,
-	"priceArray":	[6.95325407741737e-310, 6.90332460284261e-310]
+	"price":	0,
+	"priceArray":	[0, 6.94644090879169e-310]
 }
 		},
 		{
 			"type": "McBaseOrdrArrayT",
 			"value": {
 	"mcBaseOrdrArray":	[{
-			"taskSqno":	28,
-			"taskSqnoArray":	[0, 0],
-			"price":	2.09067237684115e-317,
-			"priceArray":	[6.95325407742013e-310, 4.94065645841247e-324]
+			"taskSqno":	6336,
+			"taskSqnoArray":	[-5299, 32766],
+			"price":	6.9464415281177e-310,
+			"priceArray":	[1.38338380835549e-322, 2.09064075663982e-317]
 		}, {
-			"taskSqno":	24845,
-			"taskSqnoArray":	[64, 0],
-			"price":	2.09072771219349e-317,
-			"priceArray":	[6.90332460148482e-310, 0]
+			"taskSqno":	6392,
+			"taskSqnoArray":	[-5299, 32766],
+			"price":	4.94065645841247e-324,
+			"priceArray":	[2.08450495538412e-317, 2.09069609199215e-317]
 		}]
 }
 		},
@@ -68,18 +68,18 @@
 			"value": {
 	"mcBaseOrdrAry":	{
 		"mcBaseOrdrArray":	[{
-				"taskSqno":	0,
-				"taskSqnoArray":	[0, 0],
+				"taskSqno":	16016,
+				"taskSqnoArray":	[27272, 32735],
 				"price":	0,
-				"priceArray":	[0, 1.3906499416489327e-309]
+				"priceArray":	[0, 0]
 			}, {
 				"taskSqno":	0,
 				"taskSqnoArray":	[0, 0],
-				"price":	0,
-				"priceArray":	[2.0546950501119882e-81, 2.0546950501119882e-81]
+				"price":	1.3906499416489327e-309,
+				"priceArray":	[0, 0]
 			}]
 	},
-	"pUsrDef":	0
+	"pUsrDef":	3399988123389603631
 }
 		}
 	]

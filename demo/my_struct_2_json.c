@@ -5,7 +5,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-    
+
+#ifdef __cplusplus
 #if 0
 typedef struct CppStructInfoS
 {
@@ -35,6 +36,7 @@ void *json_to_struct_CppStructInfoT(cJSON* json_obj)
 	s2j_struct_get_array_element(struct_obj_,json_obj, int, bArray2);
 	return struct_obj_;
 }
+#endif
 
 #if 0
 typedef struct McUsrInfoS
@@ -189,8 +191,8 @@ void *json_to_struct_McOcoBaseOrdrT(cJSON* json_obj)
 	return struct_obj_;
 }
 
-	
-#ifdef DEBUGS2J 
+
+#ifdef DEBUGS2J
 
  int s2j_test(void)
  {
@@ -208,14 +210,16 @@ void *json_to_struct_McOcoBaseOrdrT(cJSON* json_obj)
 
     fp = fopen(file_name, "w");
     if (NULL == fp) return 1;
-    fprintf(fp,"{\n\t\"struct\": [\n\t\t{\n\t\t\t\"type\": \"void*\",\n\t\t\t\"value\": null\n\t\t}"); 
+    fprintf(fp,"{\n\t\"struct\": [\n\t\t{\n\t\t\t\"type\": \"void*\",\n\t\t\t\"value\": null\n\t\t}");
 
+#ifdef __cplusplus
     TEST_S2J_STRUCT_CPP(CppStructInfoT, 0 , fp);
+#endif
     TEST_S2J_STRUCT_CPP(McUsrInfoT, 0 , fp);
     TEST_S2J_STRUCT_CPP(McBaseOrdrT, 0 , fp);
     TEST_S2J_STRUCT_CPP(McBaseOrdrArrayT, 0 , fp);
     TEST_S2J_STRUCT_CPP(McOcoBaseOrdrT, 0 , fp);
-    
+
     fprintf(fp,"\n\t]\n}");
     fclose(fp);
     return 0;
@@ -255,12 +259,14 @@ void *json_to_struct_McOcoBaseOrdrT(cJSON* json_obj)
     printf("\nsize:\n%d\n",array_size);
     int i = 0; \
 
+#ifdef __cplusplus
     TEST_S2J_JSON(CppStructInfoT, array_size);
+#endif
     TEST_S2J_JSON(McUsrInfoT, array_size);
     TEST_S2J_JSON(McBaseOrdrT, array_size);
     TEST_S2J_JSON(McBaseOrdrArrayT, array_size);
     TEST_S2J_JSON(McOcoBaseOrdrT, array_size);
-    
+
     fclose(fp);
     free(p);
     return 0;
