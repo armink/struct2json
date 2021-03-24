@@ -14,6 +14,8 @@ typedef struct CppStructInfoS
 	std::string stringArray2[2];
 	bool b1;
 	bool bArray2[2];
+	wchar_t wc1;
+	wchar_t wcArray[2];
 } CppStructInfoT, *pCppStructInfoT;
 #endif
 cJSON *struct_to_json_CppStructInfoT(void* struct_obj)
@@ -24,6 +26,8 @@ cJSON *struct_to_json_CppStructInfoT(void* struct_obj)
 	s2j_json_set_array_element(json_obj_, struct_obj_, stdstring, stringArray2,2);
 	s2j_json_set_basic_element(json_obj_, struct_obj_, int, b1);
 	s2j_json_set_array_element(json_obj_, struct_obj_, int, bArray2,2);
+	s2j_json_set_basic_element(json_obj_, struct_obj_, int, wc1);
+	s2j_json_set_array_element(json_obj_, struct_obj_, int, wcArray,2);
 	return json_obj_;
 }
 
@@ -34,6 +38,8 @@ void *json_to_struct_CppStructInfoT(cJSON* json_obj)
 	s2j_struct_get_array_element(struct_obj_,json_obj, stdstring, stringArray2);
 	s2j_struct_get_basic_element(struct_obj_,json_obj, int, b1);
 	s2j_struct_get_array_element(struct_obj_,json_obj, int, bArray2);
+	s2j_struct_get_basic_element(struct_obj_,json_obj, int, wc1);
+	s2j_struct_get_array_element(struct_obj_,json_obj, int, wcArray);
 	return struct_obj_;
 }
 #endif

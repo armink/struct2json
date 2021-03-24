@@ -5,6 +5,8 @@ typedef struct CppStructInfoS
     std::string stringArray2[2];
     bool b1;
     bool bArray2[2];
+    wchar_t wc1;
+    wchar_t wcArray[2];
 } CppStructInfoT, *pCppStructInfoT;
 
 typedef struct McUsrInfoS

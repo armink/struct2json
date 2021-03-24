@@ -103,7 +103,7 @@ for item in struct_str_split_list:
                 s2j_code_str_concat = s2j_code_str_concat + "s2j_json_set_basic_element(json_obj_, struct_obj_, stdstring, " + para_name + ");\n\t"
                 j2s_code_str_concat = j2s_code_str_concat + "s2j_struct_get_basic_element(struct_obj_,json_obj, stdstring, " + para_name + ");\n\t"
         else: #基本类型
-            if para_type in ("bool","char","unsigned char","signed char","int","unsigned","unsigned int","signed int","short","unsigned short","signed short","long","unsigned long","signed long","long long","unsigned long long","signed long long","BOOL","bool","size_t","uint8_t","uint16_t","uint32_t","uint64_t","int8_t","int16_t","int32_t","int64_t","uint8","uint16","uint32","uint64","int8","int16","int32","int64","uint_fast64_t","__int128_t","__uint128_t","float","double","long double"):
+            if para_type in ("bool", "wchar_t", "char","unsigned char","signed char","int","unsigned","unsigned int","signed int","short","unsigned short","signed short","long","unsigned long","signed long","long long","unsigned long long","signed long long","BOOL","bool","size_t","uint8_t","uint16_t","uint32_t","uint64_t","int8_t","int16_t","int32_t","int64_t","uint8","uint16","uint32","uint64","int8","int16","int32","int64","uint_fast64_t","__int128_t","__uint128_t","float","double","long double"):
                 if para_type in ("float","double","long double","__int128_t","__uint128_t"): #浮点型、128位整型
                     if "[" in para_name:
                         #print(para_name)
