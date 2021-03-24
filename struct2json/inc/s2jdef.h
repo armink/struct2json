@@ -33,6 +33,10 @@
 #include <string.h>
 
 #ifdef __cplusplus
+#include <string>
+#endif
+
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -63,6 +67,12 @@ typedef struct {
     json_temp = cJSON_GetObjectItem(from_json, #_element); \
     if (json_temp) strncpy((to_struct)->_element, json_temp->valuestring,sizeof((to_struct)->_element)-1);
 
+#ifdef __cplusplus
+#define S2J_STRUCT_GET_stdstring_ELEMENT(to_struct, from_json, _element) \
+    json_temp = cJSON_GetObjectItem(from_json, #_element); \
+    if (json_temp) (to_struct)->_element.assign(json_temp->valuestring);
+#endif
+
 #define S2J_STRUCT_GET_string_ELEMENT_EX(to_struct, from_json, _element, _defval) \
     { \
         if (from_json) { \
@@ -73,6 +83,19 @@ typedef struct {
             strncpy((to_struct)->_element, _defval,sizeof((to_struct)->_element)-1); \
         } \
     }
+
+#ifdef __cplusplus
+#define S2J_STRUCT_GET_stdstring_ELEMENT_EX(to_struct, from_json, _element, _defval) \
+    { \
+        if (from_json) { \
+            json_temp = cJSON_GetObjectItem(from_json, #_element); \
+            if (json_temp) (to_struct)->_element = json_temp->valuestring; \
+            else (to_struct)->_element.assign(1, _defval); \
+        } else { \
+            (to_struct)->_element.assign(1, _defval); \
+        } \
+    }
+#endif
 
 #define S2J_STRUCT_GET_double_ELEMENT(to_struct, from_json, _element) \
     json_temp = cJSON_GetObjectItem(from_json, #_element); \
@@ -95,6 +118,11 @@ typedef struct {
 #define S2J_STRUCT_ARRAY_GET_string_ELEMENT(to_struct, from_json, _element, index) \
     strncpy((to_struct)->_element[index], from_json->valuestring,sizeof((to_struct)->_element[0])-1);
 
+#ifdef __cplusplus
+#define S2J_STRUCT_ARRAY_GET_stdstring_ELEMENT(to_struct, from_json, _element, index) \
+    (to_struct)->_element[index] = from_json->valuestring;
+#endif
+
 #define S2J_STRUCT_ARRAY_GET_double_ELEMENT(to_struct, from_json, _element, index) \
     (to_struct)->_element[index] = from_json->valuedouble;
 
@@ -108,6 +136,12 @@ typedef struct {
 #define S2J_STRUCT_ARRAY_GET_string_ELEMENT_EX(to_struct, from_json, _element, index, _defval) \
     if (from_json) strncpy((to_struct)->_element[index], from_json->valuestring,sizeof((to_struct)->_element[0])-1); \
     else strncpy((to_struct)->_element[index], _defval,sizeof((to_struct)->_element[0])-1);
+
+#ifdef __cplusplus
+#define S2J_STRUCT_ARRAY_GET_stdstring_ELEMENT_EX(to_struct, from_json, _element, index, _defval) \
+    if (from_json) (to_struct)->_element[index] = from_json->valuestring; \
+    else (to_struct)->_element[index].assign(1, _defval);
+#endif
 
 #define S2J_STRUCT_ARRAY_GET_double_ELEMENT_EX(to_struct, from_json, _element, index, _defval) \
     if (from_json) (to_struct)->_element[index] = from_json->valuedouble; \
@@ -126,6 +160,11 @@ typedef struct {
     (from_struct)->_element[sizeof((from_struct)->_element)-1] = '\0'; \
     cJSON_AddStringToObject(to_json, #_element, (from_struct)->_element);
 
+#ifdef __cplusplus
+#define S2J_JSON_SET_stdstring_ELEMENT(to_json, from_struct, _element) \
+    cJSON_AddStringToObject(to_json, #_element, (from_struct)->_element.c_str());
+#endif
+
 #define S2J_JSON_ARRAY_SET_int_ELEMENT(to_json, from_struct, _element, index) \
     cJSON_AddItemToArray(to_json, cJSON_CreateInt((from_struct)->_element[index]));
 
@@ -135,6 +174,11 @@ typedef struct {
 #define S2J_JSON_ARRAY_SET_string_ELEMENT(to_json, from_struct, _element, index) \
     (from_struct)->_element[index][sizeof((from_struct)->_element[0])-1] = '\0'; \
     cJSON_AddItemToArray(to_json, cJSON_CreateString((from_struct)->_element[index]));
+
+#ifdef __cplusplus
+#define S2J_JSON_ARRAY_SET_stdstring_ELEMENT(to_json, from_struct, _element, index) \
+    cJSON_AddItemToArray(to_json, cJSON_CreateString((from_struct)->_element[index].c_str()));
+#endif
 
 #define S2J_JSON_ARRAY_SET_ELEMENT(to_json, from_struct, type, _element, index) \
     S2J_JSON_ARRAY_SET_##type##_ELEMENT(to_json, from_struct, _element, index)
@@ -167,13 +211,24 @@ typedef struct {
     cJSON *child_json = cJSON_CreateObject(); \
     if (child_json) cJSON_AddItemToObject(to_json, #_element, child_json);
 
+#ifdef __cplusplus
+#define S2J_CREATE_STRUCT_OBJECT(struct_obj, type) \
+    cJSON *json_temp; \
+    type *struct_obj = (type *) new type;
+#else
 #define S2J_CREATE_STRUCT_OBJECT(struct_obj, type) \
     cJSON *json_temp; \
     type *struct_obj = (type *)s2jHook.malloc_fn(sizeof(type)); \
     if (struct_obj) memset(struct_obj, 0, sizeof(type));
+#endif
 
+#ifdef __cplusplus
+#define S2J_DELETE_STRUCT_OBJECT(struct_obj) \
+    delete struct_obj;
+#else
 #define S2J_DELETE_STRUCT_OBJECT(struct_obj) \
     s2jHook.free_fn(struct_obj);
+#endif
 
 #define S2J_STRUCT_GET_BASIC_ELEMENT(to_struct, from_json, type, _element) \
     S2J_STRUCT_GET_##type##_ELEMENT(to_struct, from_json, _element)

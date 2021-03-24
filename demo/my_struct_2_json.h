@@ -2,6 +2,10 @@
 extern "C" {
 #endif
 
+cJSON *struct_to_json_CppStructInfoT(void* struct_obj);
+
+void *json_to_struct_CppStructInfoT(cJSON* json_obj);
+
 cJSON *struct_to_json_McUsrInfoT(void* struct_obj);
 
 void *json_to_struct_McUsrInfoT(cJSON* json_obj);

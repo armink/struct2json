@@ -1,4 +1,12 @@
 
+typedef struct CppStructInfoS
+{
+    std::string string1;
+    std::string stringArray2[2];
+    bool b1;
+    bool bArray2[2];
+} CppStructInfoT, *pCppStructInfoT;
+
 typedef struct McUsrInfoS
 {
     int *pInt;

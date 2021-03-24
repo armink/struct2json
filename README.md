@@ -55,7 +55,11 @@ typedef struct {
 #### 2) 扩展struct2json功能，增加支持结构体内包含结构体成员，支持包含数组成员。
 #### 3) 增加struct2json 结构体与JSON转换代码自动生成的Python脚本，支持从头文件中提取结构体定义，并根据结构体定义自动生成结构体与JSON互转代码，并提供相关示例。
 
-### V2.0 使用说明：
+### V2.1版本新增功能【yuxuebao】
+#### 1) 扩展struct2json功能，增加支持C++结构体,支持string,bool类型成员和数组。
+
+
+### V2.x 使用说明：
 #### 1) 提取结构体定义:
 		将头文件（eg:mc_usr_def.h）放在demo\inc目录下；
 		执行generate_struct_defination.py，生成struct_defination.txt；
@@ -65,7 +69,9 @@ typedef struct {
 		支持的数组类型:支持基本类型一维数组，结构体一维数组，字符二维数组（字符串数组）
 #### 3) 测试结构体与JSON转换:
 		cd demo
-		编译测试代码，gcc ../cJSON/cJSON.c ../struct2json/src/*.c ./*.c -I ../cJSON/ -I ../struct2json/inc/ -lm -DDEBUGS2J  -g -o tests2j
+		编译测试代码，
+        V2.0:  gcc ../cJSON/cJSON.c ../struct2json/src/*.c ./*.c -I ../cJSON/ -I ../struct2json/inc/ -lm  -g -DDEBUGS2J -o tests2j
+        V2.1+: g++ ../cJSON/cJSON.c ../struct2json/src/*.c ./*.c -I ../cJSON/ -I ../struct2json/inc/ -fpermissive -lm  -g -DDEBUGS2J -o tests2j
 		测试 ./tests2j 
 		查看output输出和生成的JSON样例文件struct_defination.json；
 		预期输出：*:strcmp:0     *:strcmp:0*:json_cmp:1

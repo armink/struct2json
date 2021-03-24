@@ -31,10 +31,13 @@
 #include <stdio.h>
 
 #ifdef DEBUGS2J
+extern "C" {
 extern int s2j_test(void);
 extern int s2j_test2(void);
+}
 #endif// DEBUGS2J
 
+#ifndef DEBUGS2J
 typedef struct {
     char name[16];
 } Hometown;
@@ -104,8 +107,10 @@ static cJSON *struct_to_json(void* struct_obj) {
     /* return Student JSON object pointer */
     return json_student;
 }
+#endif
 
 int main(void) {
+#ifndef DEBUGS2J
     static Student orignal_student_obj = {
             .id = 24,
             .weight = 71.2,
@@ -128,6 +133,7 @@ int main(void) {
 
     s2j_delete_json_obj(json_student);
     s2j_delete_struct_obj(converted_student_obj);
+#endif
 
 #ifdef DEBUGS2J
     s2j_test();
@@ -136,3 +142,4 @@ int main(void) {
 
     return 0;
 }
+

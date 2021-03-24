@@ -2,11 +2,40 @@
 #include "my_struct_2_json.inc"
 #include "my_struct_2_json.h"
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
     
+#if 0
+typedef struct CppStructInfoS
+{
+	std::string string1;
+	std::string stringArray2[2];
+	bool b1;
+	bool bArray2[2];
+} CppStructInfoT, *pCppStructInfoT;
+#endif
+cJSON *struct_to_json_CppStructInfoT(void* struct_obj)
+{
+	s2j_create_json_obj(json_obj_);
+	CppStructInfoT *struct_obj_ = (CppStructInfoT *)struct_obj;
+	s2j_json_set_basic_element(json_obj_, struct_obj_, stdstring, string1);
+	s2j_json_set_array_element(json_obj_, struct_obj_, stdstring, stringArray2,2);
+	s2j_json_set_basic_element(json_obj_, struct_obj_, int, b1);
+	s2j_json_set_array_element(json_obj_, struct_obj_, int, bArray2,2);
+	return json_obj_;
+}
+
+void *json_to_struct_CppStructInfoT(cJSON* json_obj)
+{
+	s2j_create_struct_obj(struct_obj_, CppStructInfoT);
+	s2j_struct_get_basic_element(struct_obj_,json_obj, stdstring, string1);
+	s2j_struct_get_array_element(struct_obj_,json_obj, stdstring, stringArray2);
+	s2j_struct_get_basic_element(struct_obj_,json_obj, int, b1);
+	s2j_struct_get_array_element(struct_obj_,json_obj, int, bArray2);
+	return struct_obj_;
+}
+
 #if 0
 typedef struct McUsrInfoS
 {
@@ -159,10 +188,21 @@ void *json_to_struct_McOcoBaseOrdrT(cJSON* json_obj)
 	s2j_struct_get_basic_element(struct_obj_,json_obj, int,  pUsrDef);
 	return struct_obj_;
 }
+
+	
 #ifdef DEBUGS2J 
+
  int s2j_test(void)
  {
-	
+#ifdef __cplusplus
+    S2jHook s2jHookCpp = {
+        .malloc_fn = ::operator new,
+        .free_fn = ::operator delete,
+    };
+
+    s2j_init(&s2jHookCpp);
+#endif
+
     char file_name[] = "struct_defination.json";
     FILE *fp;
 
@@ -170,10 +210,11 @@ void *json_to_struct_McOcoBaseOrdrT(cJSON* json_obj)
     if (NULL == fp) return 1;
     fprintf(fp,"{\n\t\"struct\": [\n\t\t{\n\t\t\t\"type\": \"void*\",\n\t\t\t\"value\": null\n\t\t}"); 
 
-    TEST_S2J_STRUCT(McUsrInfoT, 0 , fp);
-    TEST_S2J_STRUCT(McBaseOrdrT, 0 , fp);
-    TEST_S2J_STRUCT(McBaseOrdrArrayT, 0 , fp);
-    TEST_S2J_STRUCT(McOcoBaseOrdrT, 0 , fp);
+    TEST_S2J_STRUCT_CPP(CppStructInfoT, 0 , fp);
+    TEST_S2J_STRUCT_CPP(McUsrInfoT, 0 , fp);
+    TEST_S2J_STRUCT_CPP(McBaseOrdrT, 0 , fp);
+    TEST_S2J_STRUCT_CPP(McBaseOrdrArrayT, 0 , fp);
+    TEST_S2J_STRUCT_CPP(McOcoBaseOrdrT, 0 , fp);
     
     fprintf(fp,"\n\t]\n}");
     fclose(fp);
@@ -214,6 +255,7 @@ void *json_to_struct_McOcoBaseOrdrT(cJSON* json_obj)
     printf("\nsize:\n%d\n",array_size);
     int i = 0; \
 
+    TEST_S2J_JSON(CppStructInfoT, array_size);
     TEST_S2J_JSON(McUsrInfoT, array_size);
     TEST_S2J_JSON(McBaseOrdrT, array_size);
     TEST_S2J_JSON(McBaseOrdrArrayT, array_size);

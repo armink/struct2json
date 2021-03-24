@@ -16,28 +16,20 @@ example
 #include <string.h>      /* define string handling functions     */
 
 #ifdef __cplusplus
+#include <string>
+typedef struct CppStructInfoS
+{
+    std::string string1;
+    std::string stringArray2[2];
+    bool b1;
+    bool bArray2[2];
+} CppStructInfoT, *pCppStructInfoT;
+#endif
+
+#ifdef __cplusplus
 extern "C" {
 #endif
 
-
-/*****************************************************************************
- **
- ** Type Defination
- **
- *****************************************************************************/
-
-
-/*****************************************************************************
- **
- ** Macro
- **
- *****************************************************************************/
-
-/******************************************************************************
- **
- **  Structure
- **
- ******************************************************************************/
 
 typedef int int32;
 typedef long long int64;
